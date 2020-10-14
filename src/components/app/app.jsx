@@ -8,14 +8,17 @@ import FavoritesScreen from "../favorites/favorites-screen.jsx";
 import OfferScreen from "../offer/offer-screen.jsx";
 
 const App = (props) => {
-
   const {rentItemsAmount} = props;
+  const {offerList} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <MainScreen rentItemsAmount={rentItemsAmount} />
+          <MainScreen
+            rentItemsAmount={rentItemsAmount}
+            offerList={offerList}
+          />
         </Route>
 
         <Route exact path="/login">
@@ -36,6 +39,10 @@ const App = (props) => {
 
 App.propTypes = {
   rentItemsAmount: PropTypes.number.isRequired,
+  offerList: PropTypes.arrayOf(PropTypes.shape({
+    premium: PropTypes.number.isRequired,
+    photo: PropTypes.string.isRequired
+  })).isRequired
 };
 
 export default App;
