@@ -10,15 +10,11 @@ class PlaceCardScreen extends PureComponent {
   }
 
   handleActiveCard() {
-    // console.log(this.props.id);
-    // return this.props.id;
     this.props.onHover(this.props.id);
   }
 
   render() {
     const {offer} = this.props;
-
-    //console.log(this.props);
 
     return (
       <article

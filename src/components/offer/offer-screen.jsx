@@ -6,9 +6,20 @@ class OfferScreen extends PureComponent {
   }
 
   render() {
-    // const {offer} = this.props;
+    const {offer} = this.props;
     console.log(`props from offer screen`);
-    console.log(this.props);
+    console.log(offer);
+
+    // return {
+    //   id: nanoid(),
+    //   photo: `apartment-0${createRandomNumber(AvatarID.MIN, AvatarID.MAX)}.jpg`,
+    //   description: createDescription(DESCRIPTION_TEMPLATE),
+    //   owner: {
+    //     name: `Alex`,
+    //     avatar: `??`,
+    //     super: 0
+    //   }
+    // };
 
     return (
       <div className="page">
@@ -17,7 +28,7 @@ class OfferScreen extends PureComponent {
             <div className="header__wrapper">
               <div className="header__left">
                 <a className="header__logo-link" href="main.html">
-                  <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+                  <img className="header__logo" src="../img/logo.svg" alt="6 cities logo" width="81" height="41"/>
                 </a>
               </div>
               <nav className="header__nav">
@@ -40,33 +51,33 @@ class OfferScreen extends PureComponent {
             <div className="property__gallery-container container">
               <div className="property__gallery">
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/room.jpg" alt="Photo studio" />
+                  <img className="property__image" src="../img/room.jpg" alt="Photo studio" />
                 </div>
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio" />
+                  <img className="property__image" src="../img/apartment-01.jpg" alt="Photo studio" />
                 </div>
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio" />
+                  <img className="property__image" src="../img/apartment-02.jpg" alt="Photo studio" />
                 </div>
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-03.jpg" alt="Photo studio" />
+                  <img className="property__image" src="../img/apartment-03.jpg" alt="Photo studio" />
                 </div>
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/studio-01.jpg" alt="Photo studio" />
+                  <img className="property__image" src="../img/studio-01.jpg" alt="Photo studio" />
                 </div>
                 <div className="property__image-wrapper">
-                  <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio" />
+                  <img className="property__image" src="../img/apartment-01.jpg" alt="Photo studio" />
                 </div>
               </div>
             </div>
             <div className="property__container container">
               <div className="property__wrapper">
                 <div className="property__mark">
-                  <span>Premium</span>
+                  <span>{offer.premium === 1 ? `Premium` : ``}</span>
                 </div>
                 <div className="property__name-wrapper">
                   <h1 className="property__name">
-                    Beautiful &amp; luxurious studio at great location
+                    {offer.title}
                   </h1>
                   <button className="property__bookmark-button button" type="button">
                     <svg className="property__bookmark-icon" width="31" height="33">
@@ -77,20 +88,20 @@ class OfferScreen extends PureComponent {
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{width: 80 + `%`}}></span>
+                    <span style={{width: offer.rating * 20 + `%`}}></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
-                  <span className="property__rating-value rating__value">4.8</span>
+                  <span className="property__rating-value rating__value">{offer.rating}</span>
                 </div>
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
-                    Apartment
+                    {offer.type}
                   </li>
                   <li className="property__feature property__feature--bedrooms">
-                    3 Bedrooms
+                    {offer.bedrooms} Bedrooms
                   </li>
                   <li className="property__feature property__feature--adults">
-                    Max 4 adults
+                    Max {offer.maxGuests} adults
                   </li>
                 </ul>
                 <div className="property__price">
@@ -100,46 +111,21 @@ class OfferScreen extends PureComponent {
                 <div className="property__inside">
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
-                    <li className="property__inside-item">
-                      Wi-Fi
-                    </li>
-                    <li className="property__inside-item">
-                      Washing machine
-                    </li>
-                    <li className="property__inside-item">
-                      Towels
-                    </li>
-                    <li className="property__inside-item">
-                      Heating
-                    </li>
-                    <li className="property__inside-item">
-                      Coffee machine
-                    </li>
-                    <li className="property__inside-item">
-                      Baby seat
-                    </li>
-                    <li className="property__inside-item">
-                      Kitchen
-                    </li>
-                    <li className="property__inside-item">
-                      Dishwasher
-                    </li>
-                    <li className="property__inside-item">
-                      Cabel TV
-                    </li>
-                    <li className="property__inside-item">
-                      Fridge
-                    </li>
+                    {offer.household.map((item, key) => (
+                      <li className="property__inside-item" key={key}>
+                        {item}
+                      </li>
+                    ))}
                   </ul>
                 </div>
                 <div className="property__host">
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
                     <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                      <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar"/>
+                      <img className="property__avatar user__avatar" src="../img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar"/>
                     </div>
                     <span className="property__user-name">
-                      Angelina
+                      {offer.owner.name}
                     </span>
                   </div>
                   <div className="property__description">
@@ -157,7 +143,7 @@ class OfferScreen extends PureComponent {
                     <li className="reviews__item">
                       <div className="reviews__user user">
                         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                          <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar"/>
+                          <img className="reviews__avatar user__avatar" src="../img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar"/>
                         </div>
                         <span className="reviews__user-name">
                           Max
@@ -235,7 +221,7 @@ class OfferScreen extends PureComponent {
                 <article className="near-places__card place-card">
                   <div className="near-places__image-wrapper place-card__image-wrapper">
                     <a href="#">
-                      <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place image"/>
+                      <img className="place-card__image" src="../img/room.jpg" width="260" height="200" alt="Place image"/>
                     </a>
                   </div>
                   <div className="place-card__info">
@@ -267,7 +253,7 @@ class OfferScreen extends PureComponent {
                 <article className="near-places__card place-card">
                   <div className="near-places__image-wrapper place-card__image-wrapper">
                     <a href="#">
-                      <img className="place-card__image" src="img/apartment-02.jpg" width="260" height="200" alt="Place image"/>
+                      <img className="place-card__image" src="../img/apartment-02.jpg" width="260" height="200" alt="Place image"/>
                     </a>
                   </div>
                   <div className="place-card__info">
@@ -299,7 +285,7 @@ class OfferScreen extends PureComponent {
                 <article className="near-places__card place-card">
                   <div className="near-places__image-wrapper place-card__image-wrapper">
                     <a href="#">
-                      <img className="place-card__image" src="img/apartment-03.jpg" width="260" height="200" alt="Place image"/>
+                      <img className="place-card__image" src="../img/apartment-03.jpg" width="260" height="200" alt="Place image"/>
                     </a>
                   </div>
                   <div className="place-card__info">

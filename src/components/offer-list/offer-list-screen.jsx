@@ -29,7 +29,7 @@ class OfferListScreen extends PureComponent {
         {offerList.map((offer, i) => (
           <PlaceCardScreen
             key={`${i}-${offer.id}`}
-            id={`${i}-${offer.id}`}
+            id={`${offer.id}`}
             offer={offer}
             onHover={this.onHover}
           />
