@@ -29,9 +29,13 @@ const App = (props) => {
           <FavoritesScreen />
         </Route>
 
-        <Route exact path="/offer">
-          <OfferScreen />
-        </Route>
+        <Route
+          exact path="/offer/:id"
+          //component={OfferScreen}
+          render={() => (
+            <OfferScreen />
+          )}
+        />
       </Switch>
     </BrowserRouter>
   );

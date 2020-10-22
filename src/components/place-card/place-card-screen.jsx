@@ -1,15 +1,31 @@
 import React, {PureComponent} from "react";
+import {Link} from 'react-router-dom';
 import PropTypes from "prop-types";
 
 class PlaceCardScreen extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.handleActiveCard = this.handleActiveCard.bind(this);
+  }
+
+  handleActiveCard() {
+    // console.log(this.props.id);
+    // return this.props.id;
+    this.props.onHover(this.props.id);
   }
 
   render() {
     const {offer} = this.props;
+
+    //console.log(this.props);
+
     return (
-      <article className="cities__place-card place-card">
+      <article
+        key = {this.props.id}
+        onMouseOver = {this.handleActiveCard}
+        className="cities__place-card place-card"
+      >
         <div className="place-card__mark">
           <span>{offer.premium === 1 ? `Premium` : ``}</span>
         </div>
@@ -38,7 +54,8 @@ class PlaceCardScreen extends PureComponent {
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#">{offer.title}</a>
+            <Link to={`/offer/${this.props.id}`}>{offer.title}</Link>
+            {/* <a href="#">{offer.title}</a> */}
           </h2>
           <p className="place-card__type">{offer.type}</p>
         </div>
@@ -48,6 +65,8 @@ class PlaceCardScreen extends PureComponent {
 }
 
 PlaceCardScreen.propTypes = {
+  onHover: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
   offer: PropTypes.shape({
     premium: PropTypes.number.isRequired,
     photo: PropTypes.string.isRequired,

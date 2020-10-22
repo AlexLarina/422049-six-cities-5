@@ -1,3 +1,4 @@
+import {nanoid} from 'nanoid';
 import {createRandomNumber, getRandomArrayElement, chooseRandomArrayItems} from "../lib/random.js";
 
 const AccommodationType = {
@@ -25,11 +26,6 @@ const Guests = {
 const Cost = {
   MIN: 100,
   MAX: 150
-};
-
-const ID = {
-  MIN: 1,
-  MAX: 4
 };
 
 const AvatarID = {
@@ -64,7 +60,7 @@ const HOUSEHOLD_ITEMS = [`Wifi`, `Heating`, `Kitchen`, `Cable TV`, `Washing Mash
 
 const createOfferData = () => {
   return {
-    id: createRandomNumber(ID.MIN, ID.MAX),
+    id: nanoid(),
     photo: `apartment-0${createRandomNumber(AvatarID.MIN, AvatarID.MAX)}.jpg`,
     title: `Beautiful & luxurious apartment at great location`,
     description: createDescription(DESCRIPTION_TEMPLATE),
