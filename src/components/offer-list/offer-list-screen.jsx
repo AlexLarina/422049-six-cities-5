@@ -15,7 +15,6 @@ class OfferListScreen extends PureComponent {
   }
 
   onHover(id) {
-    console.log(id);
     this.setState({
       activeID: id
     });

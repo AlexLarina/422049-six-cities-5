@@ -33,10 +33,8 @@ const App = (props) => {
           exact path="/offer/:id"
           render={(routeProps) => {
             const offerId = routeProps.match.params.id;
-            console.log(offerId);
-            console.log(offerList);
             const offer = offerList.find((offerItem) => offerItem.id === offerId);
-            console.log(offer);
+
             return (
               <OfferScreen offer={offer} />
             );

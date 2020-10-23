@@ -7,10 +7,16 @@ class PlaceCardScreen extends PureComponent {
     super(props);
 
     this.handleActiveCard = this.handleActiveCard.bind(this);
+    this.viewFullOffer = this.viewFullOffer.bind(this);
   }
 
   handleActiveCard() {
     this.props.onHover(this.props.id);
+  }
+
+  viewFullOffer() {
+    // ?? а тут пропсы не содержат инфы об истории
+    // this.props.history.push(`offer/${this.props.id}`);
   }
 
   render() {
@@ -50,8 +56,7 @@ class PlaceCardScreen extends PureComponent {
             </div>
           </div>
           <h2 className="place-card__name">
-            <Link to={`/offer/${this.props.id}`}>{offer.title}</Link>
-            {/* <a href="#">{offer.title}</a> */}
+            <Link to={`/offer/${this.props.id}`} onClick={this.viewFullOffer}>{offer.title}</Link>
           </h2>
           <p className="place-card__type">{offer.type}</p>
         </div>
