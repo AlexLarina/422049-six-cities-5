@@ -8,7 +8,7 @@ class OfferListScreen extends PureComponent {
     super(props);
 
     this.state = {
-      activeID: null
+      activeId: null
     };
 
     this.onHover = this.onHover.bind(this);
@@ -16,7 +16,7 @@ class OfferListScreen extends PureComponent {
 
   onHover(id) {
     this.setState({
-      activeID: id
+      activeId: id
     });
   }
 

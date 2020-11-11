@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import OfferListScreen from "../offer-list/offer-list-screen.jsx";
+import LeafletMap from "../map/map.jsx";
 
 const MainScreen = (props) => {
 
@@ -104,7 +105,11 @@ const MainScreen = (props) => {
 
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <LeafletMap
+                  offerList={offerList}
+                />
+              </section>
             </div>
           </div>
         </div>
