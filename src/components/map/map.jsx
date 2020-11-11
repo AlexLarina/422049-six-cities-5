@@ -4,21 +4,20 @@ import PropTypes from "prop-types";
 
 import "leaflet/dist/leaflet.css";
 
-class LeafletMap extends PureComponent {
+const city = [52.38333, 4.9];
+const icon = leaflet.icon({
+  iconUrl: `img/pin.svg`,
+  iconSize: [30, 30]
+});
+const zoom = 12;
+
+class Map extends PureComponent {
   constructor(props) {
     super(props);
     this._mapRef = React.createRef();
   }
 
   componentDidMount() {
-    const city = [52.38333, 4.9];
-    const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
-    });
-    const zoom = 12;
-
-
     const leafletMap = leaflet.map(`map`, {
       center: city,
       zoom,
@@ -34,7 +33,7 @@ class LeafletMap extends PureComponent {
       })
       .addTo(leafletMap);
 
-    this.props.offerList.forEach((offer) => {
+    this.props.offers.forEach((offer) => {
       leaflet
         .marker(offer.coordinates, {icon})
         .addTo(leafletMap);
@@ -48,10 +47,10 @@ class LeafletMap extends PureComponent {
   }
 }
 
-LeafletMap.propTypes = {
-  offerList: PropTypes.arrayOf(PropTypes.shape({
+Map.propTypes = {
+  offers: PropTypes.arrayOf(PropTypes.shape({
     coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired
   })).isRequired
 };
 
-export default LeafletMap;
+export default Map;
