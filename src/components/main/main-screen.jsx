@@ -8,6 +8,7 @@ const MainScreen = (props) => {
 
   const {rentItemsAmount} = props;
   const {offerList} = props;
+  const offerCoordsArray = offerList.map((offer) => offer.coordinates);
 
   return (
     <div className="page page--gray page--main">
@@ -107,7 +108,7 @@ const MainScreen = (props) => {
             <div className="cities__right-section">
               <section className="cities__map map">
                 <Map
-                  offers={offerList}
+                  coordsArray={offerCoordsArray}
                 />
               </section>
             </div>

@@ -33,24 +33,22 @@ class Map extends PureComponent {
       })
       .addTo(leafletMap);
 
-    this.props.offers.forEach((offer) => {
+    this.props.coordsArray.forEach((coordinates) => {
       leaflet
-        .marker(offer.coordinates, {icon})
+        .marker(coordinates, {icon})
         .addTo(leafletMap);
     });
   }
 
   render() {
     return (
-      <div ref={this._mapRef} id="map" style={{height: `800px`}}></div>
+      <div ref={this._mapRef} id="map" style={{height: `100%`}}></div>
     );
   }
 }
 
 Map.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired
-  })).isRequired
+  coordsArray: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired).isRequired
 };
 
 export default Map;

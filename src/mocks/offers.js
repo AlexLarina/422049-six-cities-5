@@ -100,6 +100,7 @@ const createOfferData = () => {
       super: 0
     },
     coordinates: getRandomArrayElement(COORDINATES),
+    neighbors: chooseRandomArrayItems(COORDINATES, createRandomNumber(1, COORDINATES.length)),
     reviews: creatReviewsarray(REVIEWS_AMOUNT)
   };
 };

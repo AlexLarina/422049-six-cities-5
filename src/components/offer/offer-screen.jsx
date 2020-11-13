@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import NewCommentFormScreen from "../new-comment/new-comment-form-screen.jsx";
 import ReviewList from "../review-list/review-list.jsx";
+import Map from "../map/map.jsx";
 
 class OfferScreen extends PureComponent {
   constructor(props) {
@@ -136,7 +137,11 @@ class OfferScreen extends PureComponent {
                 </section>
               </div>
             </div>
-            <section className="property__map map"></section>
+            <section className="property__map map">
+              <Map
+                coordsArray={offer.neighbors}
+              />
+            </section>
           </section>
           <div className="container">
             <section className="near-places places">
@@ -264,7 +269,8 @@ OfferScreen.propTypes = {
         PropTypes.shape({
           id: PropTypes.string.isRequired
         }).isRequired
-    ).isRequired
+    ).isRequired,
+    neighbors: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired).isRequired
   }).isRequired
 };
 
