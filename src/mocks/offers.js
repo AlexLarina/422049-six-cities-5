@@ -65,6 +65,22 @@ const COORDINATES = [
   [52.3809553943508, 4.939309666406198]
 ];
 
+const AUTHORS = [`Max`, `Alex`, `Mary`, `Lloyd`, `Elis`];
+
+const createReview = () => {
+  return {
+    id: nanoid(),
+    author: getRandomArrayElement(AUTHORS),
+    rating: createRandomNumber(Rating.MIN, Rating.MAX),
+    text: createDescription(DESCRIPTION_TEMPLATE),
+    date: `April 2019`
+  };
+};
+
+const creatReviewsarray = (size) => [...(new Array(size)).keys()].map(() => createReview());
+
+const REVIEWS_AMOUNT = 3;
+
 const createOfferData = () => {
   return {
     id: nanoid(),
@@ -83,12 +99,15 @@ const createOfferData = () => {
       avatar: `??`,
       super: 0
     },
-    coordinates: getRandomArrayElement(COORDINATES)
+    coordinates: getRandomArrayElement(COORDINATES),
+    neighbors: chooseRandomArrayItems(COORDINATES, createRandomNumber(1, COORDINATES.length)),
+    reviews: creatReviewsarray(REVIEWS_AMOUNT)
   };
 };
 
 const creatOfferDataArray = (size) => [...(new Array(size)).keys()].map(() => createOfferData());
+const NEIGHBORS_AMOUNT = 3;
 
-export {creatOfferDataArray};
+export {creatOfferDataArray, NEIGHBORS_AMOUNT};
 
 

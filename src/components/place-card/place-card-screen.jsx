@@ -2,6 +2,17 @@ import React, {PureComponent} from "react";
 import {Link} from 'react-router-dom';
 import PropTypes from "prop-types";
 
+const getCardClassByType = (type) => {
+  switch (type) {
+    case `cities`:
+      return `cities__place-`;
+    case `near`:
+      return `near-places__`;
+    default:
+      return ``;
+  }
+};
+
 class PlaceCardScreen extends PureComponent {
   constructor(props) {
     super(props);
@@ -26,14 +37,14 @@ class PlaceCardScreen extends PureComponent {
       <article
         key = {this.props.id}
         onMouseOver = {this.handleActiveCard}
-        className="cities__place-card place-card"
+        className={`${this.props.className && `${getCardClassByType(this.props.className)}card`} place-card`}
       >
         <div className="place-card__mark">
           <span>{offer.premium === 1 ? `Premium` : ``}</span>
         </div>
-        <div className="cities__image-wrapper place-card__image-wrapper">
+        <div className={`${this.props.className && `${this.props.className}__image-wrapper`} place-card__image-wrapper`}>
           <a href="#">
-            <img className="place-card__image" src={`img/${offer.photo}`} width="260" height="200" alt="Place image"/>
+            <img className="place-card__image" src={`/img/${offer.photo}`} width="260" height="200" alt="Place image"/>
           </a>
         </div>
         <div className="place-card__info">
@@ -68,6 +79,7 @@ class PlaceCardScreen extends PureComponent {
 PlaceCardScreen.propTypes = {
   onHover: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
   offer: PropTypes.shape({
     premium: PropTypes.number.isRequired,
     photo: PropTypes.string.isRequired,

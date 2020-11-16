@@ -2,8 +2,9 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
 import PlaceCardCities from "../place-card-cities/place-card-cities.jsx";
+// import OfferListScreen from "../offer-list/offer-list-screen.jsx";
 
-class OfferListScreen extends PureComponent {
+class OfferListCities extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -20,12 +21,14 @@ class OfferListScreen extends PureComponent {
     });
   }
 
+  // className={`${this.props.className && `${getListClassByType(this.props.className)}list`} places__list`}
+
   render() {
     const {offerList} = this.props;
 
     return (
       <div
-        className={`places__list`}
+        className="cities__places-list places__list tabs__content"
       >
         {offerList.map((offer, i) => (
           <PlaceCardCities
@@ -40,11 +43,28 @@ class OfferListScreen extends PureComponent {
   }
 }
 
-OfferListScreen.propTypes = {
+OfferListCities.propTypes = {
   offerList: PropTypes.arrayOf(PropTypes.shape({
     premium: PropTypes.number.isRequired,
     photo: PropTypes.string.isRequired
   })).isRequired
 };
 
-export default OfferListScreen;
+export default OfferListCities;
+
+
+// class OfferListCities extends PureComponent {
+//   constructor(props) {
+//     super(props);
+//   }
+
+//   // tabs__content класс добавить
+
+//   render() {
+//     return (
+//       <OfferListScreen className={`cities`} {...this.props} />
+//     );
+//   }
+// }
+
+// export default OfferListCities;
