@@ -1,9 +1,9 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
-import PlaceCardCities from "../place-card-cities/place-card-cities.jsx";
+import PlaceCardNeighbour from "../place-card-neighbour/place-card-neighbour.jsx";
 
-class OfferListScreen extends PureComponent {
+class OfferListNeighbors extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -20,15 +20,17 @@ class OfferListScreen extends PureComponent {
     });
   }
 
+  // className={`${this.props.className && `${getListClassByType(this.props.className)}list`} places__list`}
+
   render() {
     const {offerList} = this.props;
 
     return (
       <div
-        className={`places__list`}
+        className="near-places__list places__list"
       >
         {offerList.map((offer, i) => (
-          <PlaceCardCities
+          <PlaceCardNeighbour
             key={`${i}-${offer.id}`}
             id={`${offer.id}`}
             offer={offer}
@@ -40,11 +42,11 @@ class OfferListScreen extends PureComponent {
   }
 }
 
-OfferListScreen.propTypes = {
+OfferListNeighbors.propTypes = {
   offerList: PropTypes.arrayOf(PropTypes.shape({
     premium: PropTypes.number.isRequired,
     photo: PropTypes.string.isRequired
   })).isRequired
 };
 
-export default OfferListScreen;
+export default OfferListNeighbors;

@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import OfferListScreen from "../offer-list/offer-list-screen.jsx";
+// import OfferListScreen from "../offer-list/offer-list-screen.jsx";
+import OfferListCities from "../offer-list-cities/offer-list-cities.jsx";
 import Map from "../map/map.jsx";
 
 const MainScreen = (props) => {
@@ -100,7 +101,7 @@ const MainScreen = (props) => {
                 </select>
               </form>
 
-              <OfferListScreen
+              <OfferListCities
                 offerList={offerList}
               />
 

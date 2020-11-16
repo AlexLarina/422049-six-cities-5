@@ -106,7 +106,8 @@ const createOfferData = () => {
 };
 
 const creatOfferDataArray = (size) => [...(new Array(size)).keys()].map(() => createOfferData());
+const NEIGHBORS_AMOUNT = 3;
 
-export {creatOfferDataArray};
+export {creatOfferDataArray, NEIGHBORS_AMOUNT};
 
 
