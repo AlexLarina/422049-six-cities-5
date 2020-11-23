@@ -143,7 +143,7 @@ class OfferScreen extends PureComponent {
             </div>
             <section className="property__map map">
               <Map
-                coordsArray={offer.neighbors}
+                coordinates={offer.neighbors}
               />
             </section>
           </section>

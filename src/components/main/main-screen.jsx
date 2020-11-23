@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-// import OfferListScreen from "../offer-list/offer-list-screen.jsx";
 import OfferListCities from "../offer-list-cities/offer-list-cities.jsx";
 import Map from "../map/map.jsx";
 
@@ -9,7 +8,7 @@ const MainScreen = (props) => {
 
   const {rentItemsAmount} = props;
   const {offerList} = props;
-  const offerCoordsArray = offerList.map((offer) => offer.coordinates);
+  const offerCoordinates = offerList.map((offer) => offer.coordinates);
 
   return (
     <div className="page page--gray page--main">
@@ -101,15 +100,13 @@ const MainScreen = (props) => {
                 </select>
               </form>
 
-              <OfferListCities
-                offerList={offerList}
-              />
+              <OfferListCities offerList={offerList} />
 
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
                 <Map
-                  coordsArray={offerCoordsArray}
+                  coordinates={offerCoordinates}
                 />
               </section>
             </div>

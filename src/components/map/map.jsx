@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 
 import "leaflet/dist/leaflet.css";
 
-const city = [52.38333, 4.9];
+const CITY_COORDINATES = [52.38333, 4.9];
 const icon = leaflet.icon({
   iconUrl: `/img/pin.svg`,
   iconSize: [30, 30]
 });
-const zoom = 12;
+const ZOOM = 12;
 
 class Map extends PureComponent {
   constructor(props) {
@@ -19,13 +19,13 @@ class Map extends PureComponent {
 
   componentDidMount() {
     const leafletMap = leaflet.map(`map`, {
-      center: city,
-      zoom,
+      center: CITY_COORDINATES,
+      ZOOM,
       zoomControl: false,
       marker: true
     });
 
-    leafletMap.setView(city, zoom);
+    leafletMap.setView(CITY_COORDINATES, ZOOM);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -33,7 +33,7 @@ class Map extends PureComponent {
       })
       .addTo(leafletMap);
 
-    this.props.coordsArray.forEach((coordinates) => {
+    this.props.coordinates.forEach((coordinates) => {
       leaflet
         .marker(coordinates, {icon})
         .addTo(leafletMap);
@@ -48,7 +48,7 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  coordsArray: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired).isRequired
+  coordinates: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired).isRequired
 };
 
 export default Map;

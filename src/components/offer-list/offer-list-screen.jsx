@@ -11,10 +11,10 @@ class OfferListScreen extends PureComponent {
       activeId: null
     };
 
-    this.onHover = this.onHover.bind(this);
+    this._onHover = this._onHover.bind(this);
   }
 
-  onHover(id) {
+  _onHover(id) {
     this.setState({
       activeId: id
     });
@@ -32,7 +32,7 @@ class OfferListScreen extends PureComponent {
             key={`${i}-${offer.id}`}
             id={`${offer.id}`}
             offer={offer}
-            onHover={this.onHover}
+            onHover={this._onHover}
           />
         ))}
       </div>
