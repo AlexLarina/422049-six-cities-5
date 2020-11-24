@@ -61,7 +61,7 @@ App.propTypes = {
     premium: PropTypes.number.isRequired,
     photo: PropTypes.string.isRequired
   })).isRequired,
-  activeOfferId: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired)
+  activeOfferId: PropTypes.string
 };
 
 export {App};

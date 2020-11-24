@@ -76,7 +76,7 @@ MainScreen.propTypes = {
     photo: PropTypes.string.isRequired
   })).isRequired,
   city: PropTypes.string.isRequired,
-  activeOfferId: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired)
+  activeOfferId: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
