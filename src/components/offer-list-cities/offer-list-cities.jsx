@@ -2,7 +2,6 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
 import PlaceCardCities from "../place-card-cities/place-card-cities.jsx";
-// import OfferListScreen from "../offer-list/offer-list-screen.jsx";
 
 class OfferListCities extends PureComponent {
   constructor(props) {
@@ -52,19 +51,3 @@ OfferListCities.propTypes = {
 
 export default OfferListCities;
 
-
-// class OfferListCities extends PureComponent {
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   // tabs__content класс добавить
-
-//   render() {
-//     return (
-//       <OfferListScreen className={`cities`} {...this.props} />
-//     );
-//   }
-// }
-
-// export default OfferListCities;

@@ -1,6 +1,10 @@
 import {nanoid} from 'nanoid';
 import {createRandomNumber, getRandomArrayElement, chooseRandomArrayItems} from "../lib/random.js";
 
+const NEIGHBORS_AMOUNT = 3;
+const INITIAL_CITY = `Amsterdam`;
+const OFFERS_AMOUNT = 4;
+
 const AccommodationType = {
   apartment: `Apartment`,
   room: `Private Room`,
@@ -106,8 +110,8 @@ const createOfferData = () => {
 };
 
 const creatOfferDataArray = (size) => [...(new Array(size)).keys()].map(() => createOfferData());
-const NEIGHBORS_AMOUNT = 3;
 
-export {creatOfferDataArray, NEIGHBORS_AMOUNT};
+
+export {creatOfferDataArray, NEIGHBORS_AMOUNT, INITIAL_CITY, OFFERS_AMOUNT};
 
 

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {connect} from "react-redux";
 
 import MainScreen from "../main/main-screen.jsx";
 import LoginScreen from "../login/login-screen.jsx";
@@ -8,7 +9,6 @@ import FavoritesScreen from "../favorites/favorites-screen.jsx";
 import OfferScreen from "../offer/offer-screen.jsx";
 
 const App = (props) => {
-  const {rentItemsAmount} = props;
   const {offerList} = props;
 
   return (
@@ -16,7 +16,7 @@ const App = (props) => {
       <Switch>
         <Route exact path="/">
           <MainScreen
-            rentItemsAmount={rentItemsAmount}
+            rentItemsAmount={offerList.length}
             offerList={offerList}
           />
         </Route>
@@ -45,12 +45,21 @@ const App = (props) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  offerList: state.offerList,
+});
+
+const mapDispatchToProps = () => ({
+  // ?? method needed ?
+});
+
+
 App.propTypes = {
-  rentItemsAmount: PropTypes.number.isRequired,
   offerList: PropTypes.arrayOf(PropTypes.shape({
     premium: PropTypes.number.isRequired,
     photo: PropTypes.string.isRequired
   })).isRequired
 };
 
-export default App;
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
