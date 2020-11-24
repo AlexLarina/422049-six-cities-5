@@ -5,11 +5,17 @@ import PropTypes from "prop-types";
 import "leaflet/dist/leaflet.css";
 
 const CITY_COORDINATES = [52.38333, 4.9];
-const icon = leaflet.icon({
+const ZOOM = 12;
+
+const pinIcon = leaflet.icon({
   iconUrl: `/img/pin.svg`,
   iconSize: [30, 30]
 });
-const ZOOM = 12;
+
+const activePinIcon = leaflet.icon({
+  iconUrl: `/img/pin-active.svg`,
+  iconSize: [30, 30]
+});
 
 class Map extends PureComponent {
   constructor(props) {
@@ -35,12 +41,22 @@ class Map extends PureComponent {
 
     this.props.coordinates.forEach((coordinates) => {
       leaflet
-        .marker(coordinates, {icon})
+        .marker(coordinates, {icon: pinIcon})
         .addTo(leafletMap);
     });
+
+    // @TO-DO it doesn't work
+    // if (this.props.activeOfferCoordinates) {
+    //   leaflet
+    //   .marker(this.props.activeOfferCoordinates, {icon: activePinIcon})
+    //   .addTo(leafletMap);
+    // }
   }
 
   render() {
+    // координаты нового активного предложения приходят верно, а как карту обновить ?
+    // console.log(this.props.activeOfferCoordinates);
+
     return (
       <div ref={this._mapRef} id="map" style={{height: `100%`}}></div>
     );

@@ -1,4 +1,5 @@
 import React, {PureComponent} from "react";
+import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action.js";
 
@@ -50,6 +51,10 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.sortOffers(evt.target.textContent));
   }
 });
+
+Sort.propTypes = {
+  handleSortClick: PropTypes.func.isRequired
+};
 
 export {Sort};
 export default connect(null, mapDispatchToProps)(Sort);

@@ -9,8 +9,10 @@ import Sort from "../sort/sort.jsx";
 
 const MainScreen = (props) => {
 
-  const {rentItemsAmount, offerList, city} = props;
+  const {rentItemsAmount, offerList, city, activeOfferId} = props;
   const offerCoordinates = offerList.map((offer) => offer.coordinates);
+  const activeOffer = offerList.find((offerItem) => offerItem.id === activeOfferId);
+  const activeOfferCoordinates = (activeOffer) ? activeOffer.coordinates : null;
 
   return (
     <div className="page page--gray page--main">
@@ -54,7 +56,10 @@ const MainScreen = (props) => {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map coordinates={offerCoordinates} />
+                <Map
+                  coordinates={offerCoordinates}
+                  activeOfferCoordinates={activeOfferCoordinates}
+                />
               </section>
             </div>
           </div>
@@ -70,7 +75,8 @@ MainScreen.propTypes = {
     premium: PropTypes.number.isRequired,
     photo: PropTypes.string.isRequired
   })).isRequired,
-  city: PropTypes.string.isRequired
+  city: PropTypes.string.isRequired,
+  activeOfferId: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired)
 };
 
 const mapStateToProps = (state) => ({

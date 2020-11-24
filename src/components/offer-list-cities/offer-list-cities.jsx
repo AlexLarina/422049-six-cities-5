@@ -1,29 +1,17 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../store/action.js";
 
 import PlaceCardCities from "../place-card-cities/place-card-cities.jsx";
 
 class OfferListCities extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      activeId: null
-    };
-
-    this.onHover = this.onHover.bind(this);
   }
-
-  onHover(id) {
-    this.setState({
-      activeId: id
-    });
-  }
-
-  // className={`${this.props.className && `${getListClassByType(this.props.className)}list`} places__list`}
 
   render() {
-    const {offerList} = this.props;
+    const {offerList, handleActiveOffer} = this.props;
 
     return (
       <div
@@ -34,7 +22,7 @@ class OfferListCities extends PureComponent {
             key={`${i}-${offer.id}`}
             id={`${offer.id}`}
             offer={offer}
-            onHover={this.onHover}
+            onHover={handleActiveOffer}
           />
         ))}
       </div>
@@ -46,8 +34,16 @@ OfferListCities.propTypes = {
   offerList: PropTypes.arrayOf(PropTypes.shape({
     premium: PropTypes.number.isRequired,
     photo: PropTypes.string.isRequired
-  })).isRequired
+  })).isRequired,
+  handleActiveOffer: PropTypes.func.isRequired
 };
 
-export default OfferListCities;
+const mapDispatchToProps = (dispatch) => ({
+  handleActiveOffer(id) {
+    dispatch(ActionCreator.setActiveOffer(id));
+  }
+});
+
+export {OfferListCities};
+export default connect(null, mapDispatchToProps)(OfferListCities);
 
