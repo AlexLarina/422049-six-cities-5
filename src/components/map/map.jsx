@@ -5,39 +5,63 @@ import PropTypes from "prop-types";
 import "leaflet/dist/leaflet.css";
 
 const CITY_COORDINATES = [52.38333, 4.9];
-const icon = leaflet.icon({
+const ZOOM = 12;
+
+const pinIcon = leaflet.icon({
   iconUrl: `/img/pin.svg`,
   iconSize: [30, 30]
 });
-const ZOOM = 12;
 
+const activePinIcon = leaflet.icon({
+  iconUrl: `/img/pin-active.svg`,
+  iconSize: [30, 30]
+});
 class Map extends PureComponent {
   constructor(props) {
     super(props);
     this._mapRef = React.createRef();
+
+    this._leafletMap = null;
   }
 
   componentDidMount() {
-    const leafletMap = leaflet.map(`map`, {
+    this._leafletMap = leaflet.map(`map`, {
       center: CITY_COORDINATES,
       ZOOM,
       zoomControl: false,
       marker: true
     });
 
-    leafletMap.setView(CITY_COORDINATES, ZOOM);
+    this._leafletMap.setView(CITY_COORDINATES, ZOOM);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
-      .addTo(leafletMap);
+      .addTo(this._leafletMap);
 
+    this._renderPinsOnMap();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.activeOfferCoordinates !== prevProps.activeOfferCoordinates) {
+      this._renderPinsOnMap();
+      this._renderActivePin();
+    }
+  }
+
+  _renderPinsOnMap() {
     this.props.coordinates.forEach((coordinates) => {
       leaflet
-        .marker(coordinates, {icon})
-        .addTo(leafletMap);
+        .marker(coordinates, {icon: pinIcon})
+        .addTo(this._leafletMap);
     });
+  }
+
+  _renderActivePin() {
+    leaflet
+      .marker(this.props.activeOfferCoordinates, {icon: activePinIcon})
+      .addTo(this._leafletMap);
   }
 
   render() {
@@ -48,7 +72,8 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  coordinates: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired).isRequired
+  coordinates: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired).isRequired,
+  activeOfferCoordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number)
 };
 
 export default Map;

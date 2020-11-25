@@ -9,7 +9,7 @@ import FavoritesScreen from "../favorites/favorites-screen.jsx";
 import OfferScreen from "../offer/offer-screen.jsx";
 
 const App = (props) => {
-  const {offerList} = props;
+  const {offerList, activeOfferId} = props;
 
   return (
     <BrowserRouter>
@@ -18,6 +18,7 @@ const App = (props) => {
           <MainScreen
             rentItemsAmount={offerList.length}
             offerList={offerList}
+            activeOfferId={activeOfferId}
           />
         </Route>
 
@@ -47,6 +48,7 @@ const App = (props) => {
 
 const mapStateToProps = (state) => ({
   offerList: state.offerList,
+  activeOfferId: state.activeOfferId
 });
 
 const mapDispatchToProps = () => ({
@@ -58,7 +60,8 @@ App.propTypes = {
   offerList: PropTypes.arrayOf(PropTypes.shape({
     premium: PropTypes.number.isRequired,
     photo: PropTypes.string.isRequired
-  })).isRequired
+  })).isRequired,
+  activeOfferId: PropTypes.string
 };
 
 export {App};
