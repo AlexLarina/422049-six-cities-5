@@ -3,7 +3,7 @@ const CITIES = [`Paris`, `Cologne`, `Brussels`, `Amsterdam`, `Hamburg`, `Dusseld
 const SORT_TYPES = {
   POPULAR: `POPULAR`,
   PRICE_INC: `PRICE_INC`,
-  PRICE_DEC: `PRICE_DES`,
+  PRICE_DEC: `PRICE_DEC`,
   TOP_RATED: `TOP_RATED`
 };
 

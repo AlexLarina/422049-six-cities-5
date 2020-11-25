@@ -46,8 +46,6 @@ class Sort extends PureComponent {
 
 const mapDispatchToProps = (dispatch) => ({
   handleSortClick(evt) {
-    // как тут вызвать закрытие окошка ?
-    // this._handleClick();
     dispatch(ActionCreator.sortOffers(evt.target.textContent));
   }
 });

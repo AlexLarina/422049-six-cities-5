@@ -9,8 +9,8 @@ const offerData = creatOfferDataArray(OFFERS_AMOUNT);
 
 const initialState = {
   city: INITIAL_CITY,
+  activeOfferId: null,
   offerList: offerData,
-  activeOfferId: null
 };
 
 const reducer = (state = initialState, action) => {
