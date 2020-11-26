@@ -4,7 +4,8 @@ export const ActionType = {
   CHOOSE_CITY: `CHOOSE_CITY`,
   GET_OFFERLIST: `GET_OFFERLIST`,
   SORT_OFFERS: `SORT_OFFERS`,
-  SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`
+  SET_ACTIVE_OFFER: `SET_ACTIVE_OFFER`,
+  LOAD_OFFERS: `LOAD_OFFERS`
 };
 
 export const ActionCreator = {
@@ -23,5 +24,9 @@ export const ActionCreator = {
   setActiveOffer: (activeId) => ({
     type: ActionType.SET_ACTIVE_OFFER,
     payload: activeId
+  }),
+  loadOffers: (offers) => ({
+    type: ActionType.LOAD_OFFERS,
+    payload: offers
   })
 };

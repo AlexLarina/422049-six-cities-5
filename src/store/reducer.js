@@ -35,6 +35,11 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         activeOfferId: action.payload,
       });
+
+    case ActionType.LOAD_OFFERS:
+      return extend(state, {
+        offerList: action.payload,
+      });
   }
 
   return state;

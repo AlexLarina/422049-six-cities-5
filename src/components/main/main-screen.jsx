@@ -72,7 +72,7 @@ const MainScreen = (props) => {
 MainScreen.propTypes = {
   rentItemsAmount: PropTypes.number.isRequired,
   offerList: PropTypes.arrayOf(PropTypes.shape({
-    premium: PropTypes.number.isRequired,
+    premium: PropTypes.number,
     photo: PropTypes.string.isRequired
   })).isRequired,
   city: PropTypes.string.isRequired,

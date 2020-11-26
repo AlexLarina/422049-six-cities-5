@@ -27,11 +27,6 @@ const App = (props) => {
             );
           }}
         />
-        {/* <MainScreen
-          rentItemsAmount={offerList.length}
-          offerList={offerList}
-          activeOfferId={activeOfferId}
-        /> */}
 
         <Route exact path="/login">
           <LoginScreen />
@@ -69,7 +64,7 @@ const mapDispatchToProps = () => ({
 
 App.propTypes = {
   offerList: PropTypes.arrayOf(PropTypes.shape({
-    premium: PropTypes.number.isRequired,
+    premium: PropTypes.number,
     photo: PropTypes.string.isRequired
   })).isRequired,
   activeOfferId: PropTypes.string
