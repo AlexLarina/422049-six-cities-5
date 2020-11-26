@@ -4,6 +4,7 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
 import MainScreen from "../main/main-screen.jsx";
+import MainEmpty from "../main-empty/main-empty.jsx";
 import LoginScreen from "../login/login-screen.jsx";
 import FavoritesScreen from "../favorites/favorites-screen.jsx";
 import OfferScreen from "../offer/offer-screen.jsx";
@@ -14,13 +15,23 @@ const App = (props) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
-          <MainScreen
-            rentItemsAmount={offerList.length}
-            offerList={offerList}
-            activeOfferId={activeOfferId}
-          />
-        </Route>
+        <Route exact path="/"
+          render={() => {
+            return (
+              (offerList.length) ?
+                <MainScreen
+                  rentItemsAmount={offerList.length}
+                  offerList={offerList}
+                  activeOfferId={activeOfferId} /> :
+                <MainEmpty/>
+            );
+          }}
+        />
+        {/* <MainScreen
+          rentItemsAmount={offerList.length}
+          offerList={offerList}
+          activeOfferId={activeOfferId}
+        /> */}
 
         <Route exact path="/login">
           <LoginScreen />
