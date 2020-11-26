@@ -41,6 +41,10 @@ class Map extends PureComponent {
       .addTo(this._leafletMap);
 
     this._renderPinsOnMap();
+
+    if (this.props.activeOfferCoordinates) {
+      this._renderActivePin();
+    }
   }
 
   componentDidUpdate(prevProps) {

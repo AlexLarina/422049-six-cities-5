@@ -144,6 +144,7 @@ class OfferScreen extends PureComponent {
             <section className="property__map map">
               <Map
                 coordinates={offer.neighbors}
+                activeOfferCoordinates={offer.coordinates}
               />
             </section>
           </section>
@@ -180,7 +181,8 @@ OfferScreen.propTypes = {
           id: PropTypes.string.isRequired
         }).isRequired
     ).isRequired,
-    neighbors: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired).isRequired
+    neighbors: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired).isRequired,
+    coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired
   }).isRequired
 };
 
