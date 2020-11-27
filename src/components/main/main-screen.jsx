@@ -79,8 +79,8 @@ MainScreen.propTypes = {
   activeOfferId: PropTypes.string
 };
 
-const mapStateToProps = (state) => ({
-  city: state.city,
+const mapStateToProps = ({PROCESS}) => ({
+  city: PROCESS.city,
 });
 
 export {MainScreen};

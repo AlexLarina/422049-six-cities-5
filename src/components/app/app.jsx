@@ -52,9 +52,16 @@ const App = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  offerList: state.offerList,
-  activeOfferId: state.activeOfferId
+const filterOffersByCity = (city, offers) => {
+  console.log(city);
+  console.log(offers);
+  return offers.filter((offer) => offer.city.name === city);
+};
+
+const mapStateToProps = ({PROCESS, DATA}) => ({
+  city: PROCESS.city,
+  offerList: DATA.offerList,
+  activeOfferId: PROCESS.activeOfferId
 });
 
 const mapDispatchToProps = () => ({
