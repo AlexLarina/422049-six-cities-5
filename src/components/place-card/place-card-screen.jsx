@@ -44,12 +44,9 @@ class PlaceCardScreen extends PureComponent {
             <span>Premium</span>
           </div>
         }
-        {/* <div className="place-card__mark">
-          <span>{offer.premium && offer.premium === 1 ? `Premium` : ``}</span>
-        </div> */}
         <div className={`${this.props.className && `${this.props.className}__image-wrapper`} place-card__image-wrapper`}>
           <a href="#">
-            <img className="place-card__image" src={`/img/${offer.photo}`} width="260" height="200" alt="Place image"/>
+            <img className="place-card__image" src={offer.photo} width="260" height="200" alt="Place image"/>
           </a>
         </div>
         <div className="place-card__info">
@@ -86,7 +83,7 @@ PlaceCardScreen.propTypes = {
   id: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
   offer: PropTypes.shape({
-    premium: PropTypes.number,
+    premium: PropTypes.bool,
     photo: PropTypes.string.isRequired,
     cost: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,

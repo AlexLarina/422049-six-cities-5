@@ -44,7 +44,7 @@ class OfferListNeighbors extends PureComponent {
 
 OfferListNeighbors.propTypes = {
   offerList: PropTypes.arrayOf(PropTypes.shape({
-    premium: PropTypes.number.isRequired,
+    premium: PropTypes.bool,
     photo: PropTypes.string.isRequired
   })).isRequired
 };

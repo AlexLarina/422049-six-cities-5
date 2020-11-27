@@ -15,7 +15,9 @@ class OfferScreen extends PureComponent {
 
   render() {
     const {offer} = this.props;
-    const neighbourOffers = creatOfferDataArray(NEIGHBORS_AMOUNT);
+    // const neighbourOffers = creatOfferDataArray(NEIGHBORS_AMOUNT);
+    // @TO-DO а где предложения по соседству ?
+    const neighbourOffers = [];
 
     return (
       <div className="page">
@@ -46,31 +48,20 @@ class OfferScreen extends PureComponent {
           <section className="property">
             <div className="property__gallery-container container">
               <div className="property__gallery">
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="../img/room.jpg" alt="Photo studio" />
-                </div>
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="../img/apartment-01.jpg" alt="Photo studio" />
-                </div>
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="../img/apartment-02.jpg" alt="Photo studio" />
-                </div>
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="../img/apartment-03.jpg" alt="Photo studio" />
-                </div>
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="../img/studio-01.jpg" alt="Photo studio" />
-                </div>
-                <div className="property__image-wrapper">
-                  <img className="property__image" src="../img/apartment-01.jpg" alt="Photo studio" />
-                </div>
+                {offer.images.map((imageItem, key) => (
+                  <div className="property__image-wrapper" key={`property__image-${key}`}>
+                    <img className="property__image" src={imageItem} alt="Photo studio" />
+                  </div>
+                ))}
               </div>
             </div>
             <div className="property__container container">
               <div className="property__wrapper">
+                {offer.premium &&
                 <div className="property__mark">
-                  <span>{offer.premium === 1 ? `Premium` : ``}</span>
+                  <span>Premium</span>
                 </div>
+                }
                 <div className="property__name-wrapper">
                   <h1 className="property__name">
                     {offer.title}
@@ -125,12 +116,11 @@ class OfferScreen extends PureComponent {
                     </span>
                   </div>
                   <div className="property__description">
-                    <p className="property__text">
-                      A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                    </p>
-                    <p className="property__text">
-                      An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
-                    </p>
+                    {offer.description.split(`.`).map((item, key) => (
+                      <p className="property__text" key={`description-item-${key}`}>
+                        {item}.
+                      </p>
+                    ))}
                   </div>
                 </div>
                 <section className="property__reviews reviews">
@@ -164,7 +154,7 @@ class OfferScreen extends PureComponent {
 
 OfferScreen.propTypes = {
   offer: PropTypes.shape({
-    premium: PropTypes.number.isRequired,
+    premium: PropTypes.bool,
     photo: PropTypes.string.isRequired,
     cost: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -176,13 +166,15 @@ OfferScreen.propTypes = {
       name: PropTypes.string.isRequired
     }),
     household: PropTypes.arrayOf(PropTypes.string).isRequired,
+    images: PropTypes.arrayOf(PropTypes.string).isRequired,
     reviews: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.string.isRequired
         }).isRequired
     ).isRequired,
     neighbors: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired).isRequired,
-    coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired
+    coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
+    description: PropTypes.string.isRequired
   }).isRequired
 };
 

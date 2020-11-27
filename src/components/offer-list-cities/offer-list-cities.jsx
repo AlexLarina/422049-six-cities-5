@@ -32,7 +32,7 @@ class OfferListCities extends PureComponent {
 
 OfferListCities.propTypes = {
   offerList: PropTypes.arrayOf(PropTypes.shape({
-    premium: PropTypes.number.isRequired,
+    premium: PropTypes.bool,
     photo: PropTypes.string.isRequired
   })).isRequired,
   handleActiveOffer: PropTypes.func.isRequired

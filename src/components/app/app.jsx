@@ -40,8 +40,7 @@ const App = (props) => {
           exact path="/offer/:id"
           render={(routeProps) => {
             const offerId = routeProps.match.params.id;
-            const offer = offerList.find((offerItem) => offerItem.id === offerId);
-
+            const offer = offerList.find((offerItem) => offerItem.id === parseInt(offerId, 10));
             return (
               <OfferScreen offer={offer} />
             );
@@ -71,7 +70,7 @@ const mapDispatchToProps = () => ({
 
 App.propTypes = {
   offerList: PropTypes.arrayOf(PropTypes.shape({
-    premium: PropTypes.number,
+    premium: PropTypes.bool,
     photo: PropTypes.string.isRequired
   })).isRequired,
   activeOfferId: PropTypes.string
