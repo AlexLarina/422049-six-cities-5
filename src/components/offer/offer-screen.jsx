@@ -6,8 +6,6 @@ import ReviewList from "../review-list/review-list.jsx";
 import Map from "../map/map.jsx";
 import OfferListNeighbors from "../offer-list-neighbors/offer-list-neighbors.jsx";
 
-import {creatOfferDataArray, NEIGHBORS_AMOUNT} from "../../mocks/offers.js";
-
 class OfferScreen extends PureComponent {
   constructor(props) {
     super(props);

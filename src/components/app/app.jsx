@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
+import {getOfferInCity} from "../../store/selectors/city-selector.js";
 
 import MainScreen from "../main/main-screen.jsx";
 import MainEmpty from "../main-empty/main-empty.jsx";
@@ -51,15 +52,8 @@ const App = (props) => {
   );
 };
 
-const filterOffersByCity = (city, offers) => {
-  console.log(city);
-  console.log(offers);
-  return offers.filter((offer) => offer.city.name === city);
-};
-
 const mapStateToProps = ({PROCESS, DATA}) => ({
-  city: PROCESS.city,
-  offerList: DATA.offerList,
+  offerList: getOfferInCity({PROCESS, DATA}),
   activeOfferId: PROCESS.activeOfferId
 });
 

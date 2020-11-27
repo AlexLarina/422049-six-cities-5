@@ -1,5 +1,3 @@
-import {creatOfferDataArray, OFFERS_AMOUNT} from "../mocks/offers.js";
-
 export const ActionType = {
   CHOOSE_CITY: `CHOOSE_CITY`,
   SORT_OFFERS: `SORT_OFFERS`,

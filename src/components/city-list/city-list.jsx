@@ -38,8 +38,6 @@ const mapStateToProps = ({PROCESS}) => ({
 const mapDispatchToProps = (dispatch) => ({
   handleClick(evt) {
     dispatch(chooseCity(evt.target.textContent));
-    // @TO-DO заменить селектом по городам
-    //dispatch(ActionCreator.getOfferList());
   }
 });
 
