@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action.js";
+import {sortOffers} from "../../store/action.js";
 
 class Sort extends PureComponent {
   constructor(props) {
@@ -55,7 +55,7 @@ class Sort extends PureComponent {
 
 const mapDispatchToProps = (dispatch) => ({
   handleSortClick(evt) {
-    dispatch(ActionCreator.sortOffers(evt.target.textContent));
+    dispatch(sortOffers(evt.target.textContent));
   }
 });
 

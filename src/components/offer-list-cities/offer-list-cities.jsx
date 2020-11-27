@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action.js";
+import {setActiveOffer} from "../../store/action.js";
 
 import PlaceCardCities from "../place-card-cities/place-card-cities.jsx";
 
@@ -32,7 +32,7 @@ class OfferListCities extends PureComponent {
 
 OfferListCities.propTypes = {
   offerList: PropTypes.arrayOf(PropTypes.shape({
-    premium: PropTypes.number.isRequired,
+    premium: PropTypes.bool,
     photo: PropTypes.string.isRequired
   })).isRequired,
   handleActiveOffer: PropTypes.func.isRequired
@@ -40,7 +40,7 @@ OfferListCities.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   handleActiveOffer(id) {
-    dispatch(ActionCreator.setActiveOffer(id));
+    dispatch(setActiveOffer(id));
   }
 });
 

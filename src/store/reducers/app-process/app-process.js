@@ -1,28 +1,20 @@
-import {extend} from "../lib/util.js";
-import {ActionType} from "../store/action.js";
-import {sortOffersByType} from "../lib/sort.js";
-import {SORT_LABELS} from "../lib/const.js";
+import {extend} from "../../../lib/util.js";
+import {ActionType} from "../../action.js";
+import {sortOffersByType} from "../../../lib/sort.js";
+import {SORT_LABELS} from "../../../lib/const.js";
 
-import {creatOfferDataArray, INITIAL_CITY, OFFERS_AMOUNT} from "../mocks/offers.js";
-
-const offerData = creatOfferDataArray(OFFERS_AMOUNT);
+import {INITIAL_CITY} from "../../../mocks/offers.js";
 
 const initialState = {
   city: INITIAL_CITY,
   activeOfferId: null,
-  offerList: offerData,
 };
 
-const reducer = (state = initialState, action) => {
+const appProcess = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHOOSE_CITY:
       return extend(state, {
         city: action.payload,
-      });
-
-    case ActionType.GET_OFFERLIST:
-      return extend(state, {
-        offerList: action.payload,
       });
 
     case ActionType.SORT_OFFERS:
@@ -41,4 +33,4 @@ const reducer = (state = initialState, action) => {
 };
 
 
-export {reducer};
+export {appProcess};

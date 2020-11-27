@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
+import {getOfferInCity} from "../../store/selectors/city-selector.js";
 
 import MainScreen from "../main/main-screen.jsx";
 import MainEmpty from "../main-empty/main-empty.jsx";
@@ -27,11 +28,6 @@ const App = (props) => {
             );
           }}
         />
-        {/* <MainScreen
-          rentItemsAmount={offerList.length}
-          offerList={offerList}
-          activeOfferId={activeOfferId}
-        /> */}
 
         <Route exact path="/login">
           <LoginScreen />
@@ -45,8 +41,7 @@ const App = (props) => {
           exact path="/offer/:id"
           render={(routeProps) => {
             const offerId = routeProps.match.params.id;
-            const offer = offerList.find((offerItem) => offerItem.id === offerId);
-
+            const offer = offerList.find((offerItem) => offerItem.id === parseInt(offerId, 10));
             return (
               <OfferScreen offer={offer} />
             );
@@ -57,9 +52,9 @@ const App = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  offerList: state.offerList,
-  activeOfferId: state.activeOfferId
+const mapStateToProps = ({PROCESS, DATA}) => ({
+  offerList: getOfferInCity({PROCESS, DATA}),
+  activeOfferId: PROCESS.activeOfferId
 });
 
 const mapDispatchToProps = () => ({
@@ -69,7 +64,7 @@ const mapDispatchToProps = () => ({
 
 App.propTypes = {
   offerList: PropTypes.arrayOf(PropTypes.shape({
-    premium: PropTypes.number.isRequired,
+    premium: PropTypes.bool,
     photo: PropTypes.string.isRequired
   })).isRequired,
   activeOfferId: PropTypes.string

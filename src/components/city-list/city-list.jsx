@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action.js";
+import {chooseCity} from "../../store/action.js";
 import {CITIES} from "../../lib/const.js";
 
 class CityList extends PureComponent {
@@ -31,14 +31,13 @@ class CityList extends PureComponent {
   }
 }
 
-const mapStateToProps = (state) => ({
-  city: state.city,
+const mapStateToProps = ({PROCESS}) => ({
+  city: PROCESS.city,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   handleClick(evt) {
-    dispatch(ActionCreator.chooseCity(evt.target.textContent));
-    dispatch(ActionCreator.getOfferList());
+    dispatch(chooseCity(evt.target.textContent));
   }
 });
 
