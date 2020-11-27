@@ -1,6 +1,6 @@
-import {ActionCreator} from "./action.js";
+import {loadOffers} from "./action.js";
 
 export const fetchQuestionList = () => (dispatch, _getState, api) => (
   api.get(`/hotels`)
-    .then(({data}) => dispatch(ActionCreator.loadOffers(data)))
+    .then(({data}) => dispatch(loadOffers(data)))
 );
