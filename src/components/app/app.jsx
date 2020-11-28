@@ -13,7 +13,7 @@ import FavoritesScreen from "../favorites/favorites-screen.jsx";
 import OfferScreen from "../offer/offer-screen.jsx";
 
 const App = (props) => {
-  const {offerList, activeOfferId} = props;
+  const {offerList, activeOfferId, userData} = props;
 
   return (
     <BrowserRouter history={browserHistory}>
@@ -25,6 +25,7 @@ const App = (props) => {
                 <MainScreen
                   rentItemsAmount={offerList.length}
                   offerList={offerList}
+                  userData={userData}
                   activeOfferId={activeOfferId} /> :
                 <MainEmpty/>
             );
@@ -54,9 +55,10 @@ const App = (props) => {
   );
 };
 
-const mapStateToProps = ({PROCESS, DATA}) => ({
+const mapStateToProps = ({PROCESS, DATA, USER}) => ({
   offerList: getOfferInCity({PROCESS, DATA}),
-  activeOfferId: PROCESS.activeOfferId
+  activeOfferId: PROCESS.activeOfferId,
+  userData: USER.userData
 });
 
 const mapDispatchToProps = () => ({
@@ -69,7 +71,10 @@ App.propTypes = {
     premium: PropTypes.bool,
     photo: PropTypes.string.isRequired
   })).isRequired,
-  activeOfferId: PropTypes.string
+  activeOfferId: PropTypes.string,
+  userData: PropTypes.shape({
+    email: PropTypes.string
+  })
 };
 
 export {App};

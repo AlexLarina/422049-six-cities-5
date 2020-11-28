@@ -5,6 +5,7 @@ export const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
+  LOAD_USER_DATA: `LOAD_USER_DATA`
 };
 
 // @TO-DO вынести все экспорты в конец файла
@@ -37,4 +38,9 @@ export const requireAuthorization = (status) => ({
 export const redirectToRoute = (url) => ({
   type: ActionType.REDIRECT_TO_ROUTE,
   payload: url,
+});
+
+export const loadUserData = (data) => ({
+  type: ActionType.LOAD_USER_DATA,
+  payload: data
 });

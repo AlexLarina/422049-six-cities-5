@@ -1,4 +1,4 @@
-import {loadOffers, requireAuthorization, redirectToRoute} from "./action.js";
+import {loadOffers, requireAuthorization, redirectToRoute, loadUserData} from "./action.js";
 import {AuthorizationStatus} from "../lib/const.js";
 
 export const fetchQuestionList = () => (dispatch, _getState, api) => (
@@ -8,6 +8,7 @@ export const fetchQuestionList = () => (dispatch, _getState, api) => (
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
+    .then(({data}) => dispatch(loadUserData(data)))
     .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
     .catch(() => {})
 );
