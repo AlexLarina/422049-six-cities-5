@@ -3,7 +3,7 @@ import {ActionType} from "../../action.js";
 import {sortOffersByType} from "../../../lib/sort.js";
 import {SORT_LABELS} from "../../../lib/const.js";
 
-import {INITIAL_CITY} from "../../../mocks/offers.js";
+import {INITIAL_CITY} from "../../../lib/const.js";
 
 const initialState = {
   city: INITIAL_CITY,
