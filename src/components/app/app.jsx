@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router as BrowserRouter} from "react-router-dom";
+import browserHistory from "../../services/browser-history.js";
 import {connect} from "react-redux";
 import {getOfferInCity} from "../../store/selectors/city-selector.js";
 
+import PrivateRoute from "../private-route/private-route";
 import MainScreen from "../main/main-screen.jsx";
 import MainEmpty from "../main-empty/main-empty.jsx";
 import LoginScreen from "../login/login-screen.jsx";
@@ -14,7 +16,7 @@ const App = (props) => {
   const {offerList, activeOfferId} = props;
 
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path="/"
           render={() => {
@@ -33,9 +35,9 @@ const App = (props) => {
           <LoginScreen />
         </Route>
 
-        <Route exact path="/favorites">
+        <PrivateRoute exact path="/favorites">
           <FavoritesScreen />
-        </Route>
+        </PrivateRoute>
 
         <Route
           exact path="/offer/:id"

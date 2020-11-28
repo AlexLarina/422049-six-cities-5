@@ -2,6 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
+import {AuthorizationStatus} from "../../lib/const.js";
+import {redirectToRoute} from "../../store/action.js";
+
 import OfferListCities from "../offer-list-cities/offer-list-cities.jsx";
 import Map from "../map/map.jsx";
 import CityList from "../city-list/city-list.jsx";
@@ -9,7 +12,7 @@ import Sort from "../sort/sort.jsx";
 
 const MainScreen = (props) => {
 
-  const {rentItemsAmount, offerList, city, activeOfferId} = props;
+  const {rentItemsAmount, offerList, city, activeOfferId, authorizationStatus, onSignInClick} = props;
   const offerCoordinates = offerList.map((offer) => offer.coordinates);
   const activeOffer = offerList.find((offerItem) => offerItem.id === activeOfferId);
   const activeOfferCoordinates = (activeOffer) ? activeOffer.coordinates : null;
@@ -30,7 +33,10 @@ const MainScreen = (props) => {
                   <a className="header__nav-link header__nav-link--profile" href="#">
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                    {authorizationStatus === AuthorizationStatus.NO_AUTH ?
+                      <span className="header__login" onClick={onSignInClick}>Sign in</span> :
+                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                    }
                   </a>
                 </li>
               </ul>
@@ -76,12 +82,21 @@ MainScreen.propTypes = {
     photo: PropTypes.string.isRequired
   })).isRequired,
   city: PropTypes.string.isRequired,
-  activeOfferId: PropTypes.string
+  activeOfferId: PropTypes.string,
+  authorizationStatus: PropTypes.string.isRequired,
+  onSignInClick: PropTypes.func.isRequired
 };
 
-const mapStateToProps = ({PROCESS}) => ({
+const mapStateToProps = ({PROCESS, USER}) => ({
   city: PROCESS.city,
+  authorizationStatus: USER.authorizationStatus
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onSignInClick(url) {
+    dispatch(redirectToRoute(url));
+  }
 });
 
 export {MainScreen};
-export default connect(mapStateToProps)(MainScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

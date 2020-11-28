@@ -14,4 +14,11 @@ const SORT_LABELS = {
   TOP_RATED: `Top rated first`
 };
 
-export {CITIES, SORT_TYPES, SORT_LABELS};
+const INITIAL_CITY = `Amsterdam`;
+
+const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
+export {CITIES, SORT_TYPES, SORT_LABELS, INITIAL_CITY, AuthorizationStatus};
