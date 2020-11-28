@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 import Review from "../review/review.jsx";
 
@@ -9,7 +10,8 @@ class ReviewList extends PureComponent {
   }
 
   render() {
-    const reviewList = this.props.reviews;
+    const {reviewList} = this.props;
+
     return (
       <React.Fragment>
         <h2 className="reviews__title">Reviews &middot;
@@ -31,15 +33,25 @@ class ReviewList extends PureComponent {
 }
 
 ReviewList.propTypes = {
-  reviews: PropTypes.arrayOf(
+  reviewList: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        author: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        user: PropTypes.shape({
+          [`avatar_url`]: PropTypes.string.isRequired,
+          id: PropTypes.number.isRequired,
+          [`is_pro`]: PropTypes.bool.isRequired,
+          name: PropTypes.string.isRequired
+        }).isRequired,
         rating: PropTypes.number.isRequired,
-        text: PropTypes.string.isRequired,
+        comment: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired
       }).isRequired
   ).isRequired
 };
 
-export default ReviewList;
+const mapStateToProps = ({DATA}) => ({
+  reviewList: DATA.offerCommentsList
+});
+
+export {ReviewList};
+export default connect(mapStateToProps)(ReviewList);

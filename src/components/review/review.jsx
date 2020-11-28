@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import {formatCommentDate} from "../../lib/date.js";
+
 const Review = (props) => {
   const review = props.review;
 
@@ -8,10 +10,10 @@ const Review = (props) => {
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src="../img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar"/>
+          <img className="reviews__avatar user__avatar" src={review.user[`avatar_url`]} width="54" height="54" alt="Reviews avatar"/>
         </div>
         <span className="reviews__user-name">
-          {review.author}
+          {review.user.name}
         </span>
       </div>
       <div className="reviews__info">
@@ -22,22 +24,29 @@ const Review = (props) => {
           </div>
         </div>
         <p className="reviews__text">
-          {review.text}
+          {review.comment}
         </p>
         <time className="reviews__time" dateTime="2019-04-24">
-          {review.date}
+          {formatCommentDate(review.date)}
         </time>
       </div>
     </li>
   );
 };
 
+// @TO-DO можно запариться и адаптер для коммента написать
+
 Review.propTypes = {
   review: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    user: PropTypes.shape({
+      [`avatar_url`]: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+      [`is_pro`]: PropTypes.bool.isRequired,
+      name: PropTypes.string.isRequired
+    }).isRequired,
     rating: PropTypes.number.isRequired,
-    text: PropTypes.string.isRequired,
+    comment: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired
   }).isRequired
 };

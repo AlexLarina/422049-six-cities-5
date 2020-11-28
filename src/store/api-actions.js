@@ -1,9 +1,21 @@
-import {loadOffers, requireAuthorization, redirectToRoute, loadUserData} from "./action.js";
+import {loadOffers, requireAuthorization, redirectToRoute, loadUserData, loadOfferComments} from "./action.js";
 import {AuthorizationStatus} from "../lib/const.js";
 
-export const fetchQuestionList = () => (dispatch, _getState, api) => (
+export const fetchOfferList = () => (dispatch, _getState, api) => (
   api.get(`/hotels`)
     .then(({data}) => dispatch(loadOffers(data)))
+);
+
+// @TO-DO в душе неясно, зачем это вот вообще делать, когда все данные приходят в hotels,
+// а комментарии добавляются и загружаются отдельно
+export const fetchOffer = (id) => (dispatch, _getState, api) => (
+  api.get(`/hotels/${id}`)
+    .then((data) => data)
+);
+
+export const fetchOfferComments = (id) => (dispatch, _getState, api) => (
+  api.get(`/comments/${id}`)
+    .then(({data}) => dispatch(loadOfferComments(data)))
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (
