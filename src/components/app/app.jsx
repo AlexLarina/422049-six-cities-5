@@ -4,16 +4,17 @@ import {Switch, Route, Router as BrowserRouter} from "react-router-dom";
 import browserHistory from "../../services/browser-history.js";
 import {connect} from "react-redux";
 import {getOfferInCity} from "../../store/selectors/city-selector.js";
+import {fetchOfferComments} from "../../store/api-actions.js";
 
 import PrivateRoute from "../private-route/private-route";
-import MainScreen from "../main/main-screen.jsx";
-import MainEmpty from "../main-empty/main-empty.jsx";
-import LoginScreen from "../login/login-screen.jsx";
-import FavoritesScreen from "../favorites/favorites-screen.jsx";
-import OfferScreen from "../offer/offer-screen.jsx";
+import MainScreen from "../main-screen/main-screen.jsx";
+import MainEmpty from "../main-screen-empty/main-screen-empty.jsx";
+import LoginScreen from "../login-screen/login-screen.jsx";
+import FavoritesScreen from "../favorites-screen/favorites-screen.jsx";
+import OfferScreen from "../offer-screen/offer-screen.jsx";
 
 const App = (props) => {
-  const {offerList, activeOfferId} = props;
+  const {offerList, activeOfferId, userData, openOffer} = props;
 
   return (
     <BrowserRouter history={browserHistory}>
@@ -25,6 +26,7 @@ const App = (props) => {
                 <MainScreen
                   rentItemsAmount={offerList.length}
                   offerList={offerList}
+                  userData={userData}
                   activeOfferId={activeOfferId} /> :
                 <MainEmpty/>
             );
@@ -44,6 +46,7 @@ const App = (props) => {
           render={(routeProps) => {
             const offerId = routeProps.match.params.id;
             const offer = offerList.find((offerItem) => offerItem.id === parseInt(offerId, 10));
+            openOffer(offerId);
             return (
               <OfferScreen offer={offer} />
             );
@@ -54,13 +57,21 @@ const App = (props) => {
   );
 };
 
-const mapStateToProps = ({PROCESS, DATA}) => ({
+const mapStateToProps = ({PROCESS, DATA, USER}) => ({
   offerList: getOfferInCity({PROCESS, DATA}),
-  activeOfferId: PROCESS.activeOfferId
+  activeOfferId: PROCESS.activeOfferId,
+  userData: USER.userData
 });
 
-const mapDispatchToProps = () => ({
-  // ?? method needed ?
+const mapDispatchToProps = (dispatch) => ({
+  openOffer(id) {
+    // active id
+    // dispatch(setActiveOffer(id));
+    // offer
+
+    // comments
+    dispatch(fetchOfferComments(id));
+  }
 });
 
 
@@ -69,7 +80,11 @@ App.propTypes = {
     premium: PropTypes.bool,
     photo: PropTypes.string.isRequired
   })).isRequired,
-  activeOfferId: PropTypes.string
+  activeOfferId: PropTypes.string,
+  userData: PropTypes.shape({
+    email: PropTypes.string
+  }),
+  openOffer: PropTypes.func.isRequired
 };
 
 export {App};

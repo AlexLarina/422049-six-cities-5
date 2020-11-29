@@ -7,8 +7,6 @@ const HttpCode = {
   UNAUTHORIZED: 401
 };
 
-// @TO-DO написать маппер не забыть
-
 export const createAPI = (onUnauthorized) => {
   const api = axios.create({
     baseURL: BACKEND_URL,

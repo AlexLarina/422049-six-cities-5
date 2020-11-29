@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import PlaceCardScreen from "../place-card/place-card-screen.jsx";
+import PlaceCardScreen from "../place-card/place-card.jsx";
 
 class PlaceCardCities extends PureComponent {
   constructor(props) {

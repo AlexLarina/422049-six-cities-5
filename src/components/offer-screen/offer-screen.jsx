@@ -1,5 +1,8 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+
+import {AuthorizationStatus} from "../../lib/const.js";
 
 import NewCommentFormScreen from "../new-comment/new-comment-form-screen.jsx";
 import ReviewList from "../review-list/review-list.jsx";
@@ -12,7 +15,7 @@ class OfferScreen extends PureComponent {
   }
 
   render() {
-    const {offer} = this.props;
+    const {offer, authorizationStatus} = this.props;
     // const neighbourOffers = creatOfferDataArray(NEIGHBORS_AMOUNT);
     // @TO-DO а где предложения по соседству ?
     const neighbourOffers = [];
@@ -125,7 +128,11 @@ class OfferScreen extends PureComponent {
                   <ReviewList
                     reviews={offer.reviews}
                   />
-                  <NewCommentFormScreen />
+                  {(authorizationStatus === AuthorizationStatus.AUTH) &&
+                    <NewCommentFormScreen
+                      offerId={offer.id}
+                    />
+                  }
                 </section>
               </div>
             </div>
@@ -152,6 +159,7 @@ class OfferScreen extends PureComponent {
 
 OfferScreen.propTypes = {
   offer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     premium: PropTypes.bool,
     photo: PropTypes.string.isRequired,
     cost: PropTypes.number.isRequired,
@@ -173,7 +181,13 @@ OfferScreen.propTypes = {
     neighbors: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired).isRequired,
     coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
     description: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  authorizationStatus: PropTypes.string.isRequired
 };
 
-export default OfferScreen;
+const mapStateToProps = ({USER}) => ({
+  authorizationStatus: USER.authorizationStatus
+});
+
+export {OfferScreen};
+export default connect(mapStateToProps)(OfferScreen);

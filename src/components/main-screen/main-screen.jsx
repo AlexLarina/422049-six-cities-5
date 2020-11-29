@@ -12,7 +12,7 @@ import Sort from "../sort/sort.jsx";
 
 const MainScreen = (props) => {
 
-  const {rentItemsAmount, offerList, city, activeOfferId, authorizationStatus, onSignInClick} = props;
+  const {rentItemsAmount, offerList, userData, city, activeOfferId, authorizationStatus, onSignInClick} = props;
   const offerCoordinates = offerList.map((offer) => offer.coordinates);
   const activeOffer = offerList.find((offerItem) => offerItem.id === activeOfferId);
   const activeOfferCoordinates = (activeOffer) ? activeOffer.coordinates : null;
@@ -35,7 +35,7 @@ const MainScreen = (props) => {
                     </div>
                     {authorizationStatus === AuthorizationStatus.NO_AUTH ?
                       <span className="header__login" onClick={onSignInClick}>Sign in</span> :
-                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                      <span className="header__user-name user__name">{userData.email}</span>
                     }
                   </a>
                 </li>
@@ -84,7 +84,10 @@ MainScreen.propTypes = {
   city: PropTypes.string.isRequired,
   activeOfferId: PropTypes.string,
   authorizationStatus: PropTypes.string.isRequired,
-  onSignInClick: PropTypes.func.isRequired
+  onSignInClick: PropTypes.func.isRequired,
+  userData: PropTypes.shape({
+    email: PropTypes.string
+  })
 };
 
 const mapStateToProps = ({PROCESS, USER}) => ({
