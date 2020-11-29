@@ -125,9 +125,7 @@ class OfferScreen extends PureComponent {
                   </div>
                 </div>
                 <section className="property__reviews reviews">
-                  <ReviewList
-                    reviews={offer.reviews}
-                  />
+                  <ReviewList/>
                   {(authorizationStatus === AuthorizationStatus.AUTH) &&
                     <NewCommentFormScreen
                       offerId={offer.id}
@@ -173,11 +171,6 @@ OfferScreen.propTypes = {
     }),
     household: PropTypes.arrayOf(PropTypes.string).isRequired,
     images: PropTypes.arrayOf(PropTypes.string).isRequired,
-    reviews: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.string.isRequired
-        }).isRequired
-    ).isRequired,
     neighbors: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired).isRequired,
     coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
     description: PropTypes.string.isRequired

@@ -17,7 +17,6 @@ const offer = {
   },
   household: [],
   images: [],
-  reviews: [],
   neighbors: [],
   coordinates: [],
   description: ``
