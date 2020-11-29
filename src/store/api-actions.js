@@ -1,4 +1,4 @@
-import {loadOffers, requireAuthorization, redirectToRoute, loadUserData, loadOfferComments} from "./action.js";
+import {loadOffers, requireAuthorization, redirectToRoute, loadUserData, loadOfferComments, loadOfferNeighboors} from "./action.js";
 import {AuthorizationStatus} from "../lib/const.js";
 
 export const fetchOfferList = () => (dispatch, _getState, api) => (
@@ -11,6 +11,11 @@ export const fetchOfferList = () => (dispatch, _getState, api) => (
 export const fetchOffer = (id) => (dispatch, _getState, api) => (
   api.get(`/hotels/${id}`)
     .then((data) => data)
+);
+
+export const fetchNearbyOffers = (id) => (dispatch, _getState, api) => (
+  api.get(`/hotels/${id}/nearby`)
+    .then(({data}) => dispatch(loadOfferNeighboors(data)))
 );
 
 export const fetchOfferComments = (id) => (dispatch, _getState, api) => (

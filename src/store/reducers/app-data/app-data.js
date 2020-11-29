@@ -4,7 +4,8 @@ import {adaptToClient} from "../../../lib/adapter.js";
 
 const initialState = {
   offerList: [],
-  offerCommentsList: []
+  offerCommentsList: [],
+  offerNeighboorsList: []
 };
 
 const adaptOfferListToClient = (offers) => offers.map((offer) => adaptToClient(offer));
@@ -18,6 +19,10 @@ const appData = (state = initialState, action) => {
     case ActionType.LOAD_OFFER_COMMENTS:
       return extend(state, {
         offerCommentsList: action.payload,
+      });
+    case ActionType.LOAD_OFFER_NEIGHBOORS:
+      return extend(state, {
+        offerNeighboorsList: adaptOfferListToClient(action.payload),
       });
   }
 

@@ -9,6 +9,7 @@ export const ActionType = {
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   LOAD_USER_DATA: `LOAD_USER_DATA`,
   LOAD_OFFER_COMMENTS: `LOAD_OFFER_COMMENTS`,
+  LOAD_OFFER_NEIGHBOORS: `LOAD_OFFER_NEIGHBOORS`
 };
 
 // @TO-DO вынести все экспорты в конец файла
@@ -57,4 +58,9 @@ export const loadExactOffer = (offer) => ({
 export const loadOfferComments = (comments) => ({
   type: ActionType.LOAD_OFFER_COMMENTS,
   payload: comments
+});
+
+export const loadOfferNeighboors = (neighboors) => ({
+  type: ActionType.LOAD_OFFER_NEIGHBOORS,
+  payload: neighboors
 });

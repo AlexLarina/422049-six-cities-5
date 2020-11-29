@@ -125,7 +125,7 @@ class OfferScreen extends PureComponent {
                   </div>
                 </div>
                 <section className="property__reviews reviews">
-                  <ReviewList/>
+                  <ReviewList />
                   {(authorizationStatus === AuthorizationStatus.AUTH) &&
                     <NewCommentFormScreen
                       offerId={offer.id}
@@ -145,7 +145,7 @@ class OfferScreen extends PureComponent {
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <OfferListNeighbors
-                offerList={neighbourOffers}
+
               />
             </section>
           </div>

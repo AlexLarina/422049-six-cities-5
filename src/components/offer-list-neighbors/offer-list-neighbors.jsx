@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 import PlaceCardNeighbour from "../place-card-neighbour/place-card-neighbour.jsx";
 
@@ -49,4 +50,9 @@ OfferListNeighbors.propTypes = {
   })).isRequired
 };
 
-export default OfferListNeighbors;
+const mapStateToProps = ({DATA}) => ({
+  offerList: DATA.offerNeighboorsList
+});
+
+export {OfferListNeighbors};
+export default connect(mapStateToProps)(OfferListNeighbors);

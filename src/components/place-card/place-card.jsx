@@ -1,6 +1,8 @@
 import React, {PureComponent} from "react";
 import {Link} from 'react-router-dom';
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {redirectToRoute} from "../../store/action.js";
 
 const getCardClassByType = (type) => {
   switch (type) {
@@ -31,7 +33,7 @@ class PlaceCardScreen extends PureComponent {
   }
 
   render() {
-    const {offer} = this.props;
+    const {offer, handleBookmarkClick} = this.props;
 
     return (
       <article
@@ -55,7 +57,7 @@ class PlaceCardScreen extends PureComponent {
               <b className="place-card__price-value">&euro;{offer.cost}</b>
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
-            <button className="place-card__bookmark-button button" type="button">
+            <button className="place-card__bookmark-button button" type="button" onClick={handleBookmarkClick}>
               <svg className="place-card__bookmark-icon" width="18" height="19">
                 <use xlinkHref="#icon-bookmark"></use>
               </svg>
@@ -80,6 +82,7 @@ class PlaceCardScreen extends PureComponent {
 
 PlaceCardScreen.propTypes = {
   onHover: PropTypes.func.isRequired,
+  handleBookmarkClick: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
   offer: PropTypes.shape({
@@ -92,4 +95,14 @@ PlaceCardScreen.propTypes = {
   }).isRequired
 };
 
-export default PlaceCardScreen;
+//export default PlaceCardScreen;
+
+const mapDispatchToProps = (dispatch) => ({
+  handleBookmarkClick() {
+    // @TO-DO пост запрос на добавление избранное
+    //dispatch(redirectToRoute(`/favorites`));
+  }
+});
+
+export {PlaceCardScreen};
+export default connect(null, mapDispatchToProps)(PlaceCardScreen);
