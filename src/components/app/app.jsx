@@ -6,11 +6,11 @@ import {connect} from "react-redux";
 import {getOfferInCity} from "../../store/selectors/city-selector.js";
 
 import PrivateRoute from "../private-route/private-route";
-import MainScreen from "../main/main-screen.jsx";
-import MainEmpty from "../main-empty/main-empty.jsx";
-import LoginScreen from "../login/login-screen.jsx";
-import FavoritesScreen from "../favorites/favorites-screen.jsx";
-import OfferScreen from "../offer/offer-screen.jsx";
+import MainScreen from "../main-screen/main-screen.jsx";
+import MainEmpty from "../main-screen-empty/main-screen-empty.jsx";
+import LoginScreen from "../login-screen/login-screen.jsx";
+import FavoritesScreen from "../favorites-screen/favorites-screen.jsx";
+import OfferScreen from "../offer-screen/offer-screen.jsx";
 
 const App = (props) => {
   const {offerList, activeOfferId, userData} = props;
