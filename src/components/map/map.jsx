@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import "leaflet/dist/leaflet.css";
 
-const CITY_COORDINATES = [52.38333, 4.9];
+//const CITY_COORDINATES = [52.38333, 4.9];
 const ZOOM = 12;
 
 const pinIcon = leaflet.icon({
@@ -26,13 +26,13 @@ class Map extends PureComponent {
 
   componentDidMount() {
     this._leafletMap = leaflet.map(`map`, {
-      center: CITY_COORDINATES,
+      center: this.props.cityCoordinates,
       ZOOM,
       zoomControl: false,
       marker: true
     });
 
-    this._leafletMap.setView(CITY_COORDINATES, ZOOM);
+    this._leafletMap.setView(this.props.cityCoordinates, ZOOM);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {

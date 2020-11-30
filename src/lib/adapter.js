@@ -5,7 +5,7 @@ import {extend} from "./util.js";
 // images: ["https://assets.htmlacademy.ru/intensives/javascript-3/hotel/15.jpg",…]
 // is_favorite: false
 
-const getLocationCoordinates = (location) => [location.latitude, location.longitude];
+export const getLocationCoordinates = (location) => [location.latitude, location.longitude];
 
 export const adaptToClient = (offer) => {
   return extend(offer, {

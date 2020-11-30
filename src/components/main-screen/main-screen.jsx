@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 
 import {AuthorizationStatus} from "../../lib/const.js";
 import {redirectToRoute} from "../../store/action.js";
+import {getLocationCoordinates} from "../../lib/adapter.js";
 
 import OfferListCities from "../offer-list-cities/offer-list-cities.jsx";
 import Map from "../map/map.jsx";
@@ -24,8 +25,8 @@ const MainScreen = (props) => {
   } = props;
 
   const offerCoordinates = offerList.map((offer) => offer.coordinates);
-  const activeOffer = offerList.find((offerItem) => offerItem.id === activeOfferId);
-  const activeOfferCoordinates = (activeOffer) ? activeOffer.coordinates : null;
+  const activeOffer = offerList.find((offerItem) => offerItem.id === parseInt(activeOfferId, 10));
+  const activeOfferCoordinates = (activeOffer) ? getLocationCoordinates(activeOffer.location) : null;
 
   return (
     <div className="page page--gray page--main">
@@ -73,6 +74,7 @@ const MainScreen = (props) => {
             <div className="cities__right-section">
               <section className="cities__map map">
                 <Map
+                  cityCoordinates={[52.38333, 4.9]}
                   coordinates={offerCoordinates}
                   activeOfferCoordinates={activeOfferCoordinates}
                 />
