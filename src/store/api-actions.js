@@ -8,10 +8,11 @@ import {
   loadFavoriteOffers
 } from "./action.js";
 import {AuthorizationStatus} from "../lib/const.js";
+import {adaptOfferListToClient} from "../lib/adapter.js";
 
 export const fetchOfferList = () => (dispatch, _getState, api) => (
   api.get(`/hotels`)
-    .then(({data}) => dispatch(loadOffers(data)))
+    .then(({data}) => dispatch(loadOffers(adaptOfferListToClient(data))))
 );
 
 // @TO-DO в душе неясно, зачем это вот вообще делать, когда все данные приходят в hotels,

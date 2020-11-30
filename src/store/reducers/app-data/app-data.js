@@ -14,7 +14,7 @@ const appData = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_OFFERS:
       return extend(state, {
-        offerList: adaptOfferListToClient(action.payload),
+        offerList: action.payload,
         cityList: createArrayUniqueByKey(getCityInfo(action.payload), `name`)
       });
     case ActionType.LOAD_OFFER_COMMENTS:
