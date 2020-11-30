@@ -16,9 +16,7 @@ class OfferScreen extends PureComponent {
 
   render() {
     const {offer, authorizationStatus} = this.props;
-    // const neighbourOffers = creatOfferDataArray(NEIGHBORS_AMOUNT);
-    // @TO-DO а где предложения по соседству ?
-    const neighbourOffers = [];
+    console.log(offer);
 
     return (
       <div className="page">
@@ -136,7 +134,8 @@ class OfferScreen extends PureComponent {
             </div>
             <section className="property__map map">
               <Map
-                coordinates={offer.neighbors}
+                cityCoordinates={[52.38333, 4.9]}
+                coordinates={[]}
                 activeOfferCoordinates={offer.coordinates}
               />
             </section>
