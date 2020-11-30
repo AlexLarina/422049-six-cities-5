@@ -1,4 +1,11 @@
-import {loadOffers, requireAuthorization, redirectToRoute, loadUserData, loadOfferComments, loadOfferNeighboors} from "./action.js";
+import {
+  loadOffers,
+  requireAuthorization,
+  redirectToRoute,
+  loadUserData,
+  loadOfferComments,
+  loadOfferNeighboors,
+} from "./action.js";
 import {AuthorizationStatus} from "../lib/const.js";
 
 export const fetchOfferList = () => (dispatch, _getState, api) => (

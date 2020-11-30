@@ -1,11 +1,12 @@
 import React, {PureComponent} from "react";
+import {connect} from "react-redux";
 import leaflet from "leaflet";
 import PropTypes from "prop-types";
 
 import "leaflet/dist/leaflet.css";
 
 //const CITY_COORDINATES = [52.38333, 4.9];
-const ZOOM = 12;
+const ZOOM = 13;
 
 const pinIcon = leaflet.icon({
   iconUrl: `/img/pin.svg`,
@@ -69,6 +70,9 @@ class Map extends PureComponent {
   }
 
   render() {
+    console.log(this.props);
+    console.log(`from map city coords`);
+    console.log(this.props.cityCoordinates);
     return (
       <div ref={this._mapRef} id="map" style={{height: `100%`}}></div>
     );
@@ -80,4 +84,9 @@ Map.propTypes = {
   activeOfferCoordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number)
 };
 
-export default Map;
+const mapStateToProps = ({PROCESS}) => ({
+  cityCoordinates: PROCESS.cityCoordinates,
+});
+
+export {Map};
+export default connect(mapStateToProps)(Map);

@@ -100,7 +100,7 @@ PlaceCardScreen.propTypes = {
 const mapDispatchToProps = (dispatch) => ({
   handleBookmarkClick() {
     // @TO-DO пост запрос на добавление избранное
-    //dispatch(redirectToRoute(`/favorites`));
+    // dispatch(redirectToRoute(`/favorites`));
   }
 });
 

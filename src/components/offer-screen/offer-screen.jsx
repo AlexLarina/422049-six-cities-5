@@ -16,7 +16,6 @@ class OfferScreen extends PureComponent {
 
   render() {
     const {offer, authorizationStatus} = this.props;
-    console.log(offer);
 
     return (
       <div className="page">

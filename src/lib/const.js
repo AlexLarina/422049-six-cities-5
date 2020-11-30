@@ -15,10 +15,11 @@ const SORT_LABELS = {
 };
 
 const INITIAL_CITY = `Amsterdam`;
+const INITIAL_CITY_COORDS = [52.37454, 4.897976];
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
 };
 
-export {CITIES, SORT_TYPES, SORT_LABELS, INITIAL_CITY, AuthorizationStatus};
+export {CITIES, SORT_TYPES, SORT_LABELS, INITIAL_CITY, INITIAL_CITY_COORDS, AuthorizationStatus};

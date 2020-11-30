@@ -11,6 +11,14 @@ class CityList extends PureComponent {
 
   render() {
     const {city, handleClick} = this.props;
+    // const cityCoordinates = getLocationCoordinates(
+    //     cityList.find((cityItem) => cityItem.name === city).location
+    // );
+    // console.log('city from citylist');
+    // console.log(city);
+    // console.log('cityList from city list');
+    // console.log(cityList);
+    // console.log(cityList.find((cityItem) => cityItem.name === city));
 
     return (
       <ul className="locations__list tabs__list">
