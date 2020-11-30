@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 import PlaceCardNeighbour from "../place-card-neighbour/place-card-neighbour.jsx";
 
@@ -23,13 +24,13 @@ class OfferListNeighbors extends PureComponent {
   // className={`${this.props.className && `${getListClassByType(this.props.className)}list`} places__list`}
 
   render() {
-    const {offerList} = this.props;
+    const {offerNeighboorsList} = this.props;
 
     return (
       <div
         className="near-places__list places__list"
       >
-        {offerList.map((offer, i) => (
+        {offerNeighboorsList.map((offer, i) => (
           <PlaceCardNeighbour
             key={`${i}-${offer.id}`}
             id={`${offer.id}`}
@@ -43,10 +44,15 @@ class OfferListNeighbors extends PureComponent {
 }
 
 OfferListNeighbors.propTypes = {
-  offerList: PropTypes.arrayOf(PropTypes.shape({
+  offerNeighboorsList: PropTypes.arrayOf(PropTypes.shape({
     premium: PropTypes.bool,
     photo: PropTypes.string.isRequired
   })).isRequired
 };
 
-export default OfferListNeighbors;
+const mapStateToProps = ({DATA}) => ({
+  offerNeighboorsList: DATA.offerNeighboorsList
+});
+
+export {OfferListNeighbors};
+export default connect(mapStateToProps)(OfferListNeighbors);

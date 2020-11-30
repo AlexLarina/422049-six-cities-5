@@ -1,9 +1,18 @@
-import {loadOffers, requireAuthorization, redirectToRoute, loadUserData, loadOfferComments} from "./action.js";
+import {
+  loadOffers,
+  requireAuthorization,
+  redirectToRoute,
+  loadUserData,
+  loadOfferComments,
+  loadOfferNeighboors,
+  loadFavoriteOffers
+} from "./action.js";
 import {AuthorizationStatus} from "../lib/const.js";
+import {adaptOfferListToClient} from "../lib/adapter.js";
 
 export const fetchOfferList = () => (dispatch, _getState, api) => (
   api.get(`/hotels`)
-    .then(({data}) => dispatch(loadOffers(data)))
+    .then(({data}) => dispatch(loadOffers(adaptOfferListToClient(data))))
 );
 
 // @TO-DO в душе неясно, зачем это вот вообще делать, когда все данные приходят в hotels,
@@ -11,6 +20,20 @@ export const fetchOfferList = () => (dispatch, _getState, api) => (
 export const fetchOffer = (id) => (dispatch, _getState, api) => (
   api.get(`/hotels/${id}`)
     .then((data) => data)
+);
+
+export const fetchNearbyOffers = (id) => (dispatch, _getState, api) => (
+  api.get(`/hotels/${id}/nearby`)
+    .then(({data}) => dispatch(loadOfferNeighboors(data)))
+);
+
+export const fetchFavoriteOffers = () => (dispatch, _getState, api) => (
+  api.get(`/favorite`)
+    .then(({data}) => dispatch(loadFavoriteOffers(data)))
+);
+
+export const addOfferToFavorite = ({id, status}) => (dispatch, _getState, api) => (
+  api.post(`/favorite/${id}/${status}`)
 );
 
 export const fetchOfferComments = (id) => (dispatch, _getState, api) => (

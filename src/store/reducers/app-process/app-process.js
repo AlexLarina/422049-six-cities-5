@@ -3,10 +3,11 @@ import {ActionType} from "../../action.js";
 import {sortOffersByType} from "../../../lib/sort.js";
 import {SORT_LABELS} from "../../../lib/const.js";
 
-import {INITIAL_CITY} from "../../../lib/const.js";
+import {INITIAL_CITY, INITIAL_CITY_COORDS} from "../../../lib/const.js";
 
 const initialState = {
   city: INITIAL_CITY,
+  cityCoordinates: INITIAL_CITY_COORDS,
   activeOfferId: null,
 };
 
@@ -26,6 +27,11 @@ const appProcess = (state = initialState, action) => {
     case ActionType.SET_ACTIVE_OFFER:
       return extend(state, {
         activeOfferId: action.payload,
+      });
+
+    case ActionType.UPDATE_CITY_COORDINATES:
+      return extend(state, {
+        cityCoordinates: action.payload,
       });
   }
 

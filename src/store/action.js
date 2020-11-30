@@ -9,6 +9,9 @@ export const ActionType = {
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   LOAD_USER_DATA: `LOAD_USER_DATA`,
   LOAD_OFFER_COMMENTS: `LOAD_OFFER_COMMENTS`,
+  LOAD_OFFER_NEIGHBOORS: `LOAD_OFFER_NEIGHBOORS`,
+  UPDATE_CITY_COORDINATES: `UPDATE_CITY_COORDINATES`,
+  LOAD_FAVORITE_OFFERS: `LOAD_FAVORITE_OFFERS`
 };
 
 // @TO-DO вынести все экспорты в конец файла
@@ -57,4 +60,19 @@ export const loadExactOffer = (offer) => ({
 export const loadOfferComments = (comments) => ({
   type: ActionType.LOAD_OFFER_COMMENTS,
   payload: comments
+});
+
+export const loadOfferNeighboors = (neighboors) => ({
+  type: ActionType.LOAD_OFFER_NEIGHBOORS,
+  payload: neighboors
+});
+
+export const updateCityCoordinates = (coordinates) => ({
+  type: ActionType.UPDATE_CITY_COORDINATES,
+  payload: coordinates
+});
+
+export const loadFavoriteOffers = (offers) => ({
+  type: ActionType.LOAD_FAVORITE_OFFERS,
+  payload: offers
 });

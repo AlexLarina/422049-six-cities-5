@@ -16,9 +16,6 @@ class OfferScreen extends PureComponent {
 
   render() {
     const {offer, authorizationStatus} = this.props;
-    // const neighbourOffers = creatOfferDataArray(NEIGHBORS_AMOUNT);
-    // @TO-DO а где предложения по соседству ?
-    const neighbourOffers = [];
 
     return (
       <div className="page">
@@ -125,9 +122,7 @@ class OfferScreen extends PureComponent {
                   </div>
                 </div>
                 <section className="property__reviews reviews">
-                  <ReviewList
-                    reviews={offer.reviews}
-                  />
+                  <ReviewList />
                   {(authorizationStatus === AuthorizationStatus.AUTH) &&
                     <NewCommentFormScreen
                       offerId={offer.id}
@@ -138,7 +133,8 @@ class OfferScreen extends PureComponent {
             </div>
             <section className="property__map map">
               <Map
-                coordinates={offer.neighbors}
+                cityCoordinates={[52.38333, 4.9]}
+                coordinates={[]}
                 activeOfferCoordinates={offer.coordinates}
               />
             </section>
@@ -147,7 +143,7 @@ class OfferScreen extends PureComponent {
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <OfferListNeighbors
-                offerList={neighbourOffers}
+
               />
             </section>
           </div>
@@ -173,11 +169,6 @@ OfferScreen.propTypes = {
     }),
     household: PropTypes.arrayOf(PropTypes.string).isRequired,
     images: PropTypes.arrayOf(PropTypes.string).isRequired,
-    reviews: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.string.isRequired
-        }).isRequired
-    ).isRequired,
     neighbors: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired).isRequired,
     coordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
     description: PropTypes.string.isRequired

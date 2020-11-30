@@ -4,7 +4,7 @@ import {Switch, Route, Router as BrowserRouter} from "react-router-dom";
 import browserHistory from "../../services/browser-history.js";
 import {connect} from "react-redux";
 import {getOfferInCity} from "../../store/selectors/city-selector.js";
-import {fetchOfferComments} from "../../store/api-actions.js";
+import {fetchOfferComments, fetchNearbyOffers, fetchFavoriteOffers} from "../../store/api-actions.js";
 
 import PrivateRoute from "../private-route/private-route";
 import MainScreen from "../main-screen/main-screen.jsx";
@@ -14,7 +14,7 @@ import FavoritesScreen from "../favorites-screen/favorites-screen.jsx";
 import OfferScreen from "../offer-screen/offer-screen.jsx";
 
 const App = (props) => {
-  const {offerList, activeOfferId, userData, openOffer} = props;
+  const {offerList, activeOfferId, userData, openOffer, openFavorites} = props;
 
   return (
     <BrowserRouter history={browserHistory}>
@@ -37,9 +37,14 @@ const App = (props) => {
           <LoginScreen />
         </Route>
 
-        <PrivateRoute exact path="/favorites">
-          <FavoritesScreen />
-        </PrivateRoute>
+        <PrivateRoute exact path="/favorites"
+          render={() => {
+            openFavorites();
+            return (
+              <FavoritesScreen />
+            );
+          }}
+        />
 
         <Route
           exact path="/offer/:id"
@@ -60,17 +65,18 @@ const App = (props) => {
 const mapStateToProps = ({PROCESS, DATA, USER}) => ({
   offerList: getOfferInCity({PROCESS, DATA}),
   activeOfferId: PROCESS.activeOfferId,
-  userData: USER.userData
+  userData: USER.userData,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   openOffer(id) {
-    // active id
-    // dispatch(setActiveOffer(id));
-    // offer
-
-    // comments
+    // @TO-DO загрузка активного оффера
+    // а за каким хуем она собственно нужна ?
     dispatch(fetchOfferComments(id));
+    dispatch(fetchNearbyOffers(id));
+  },
+  openFavorites() {
+    dispatch(fetchFavoriteOffers());
   }
 });
 
@@ -84,7 +90,8 @@ App.propTypes = {
   userData: PropTypes.shape({
     email: PropTypes.string
   }),
-  openOffer: PropTypes.func.isRequired
+  openOffer: PropTypes.func.isRequired,
+  openFavorites: PropTypes.func.isRequired
 };
 
 export {App};

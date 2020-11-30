@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render OfferListNeighbors 1`] = `
+<div
+  className="near-places__list places__list"
+/>
+`;

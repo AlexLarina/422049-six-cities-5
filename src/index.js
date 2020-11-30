@@ -5,7 +5,7 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import {createAPI} from "./services/api.js";
-import {checkAuth, fetchOfferList, fetchOfferComments} from "./store/api-actions.js";
+import {checkAuth, fetchOfferList} from "./store/api-actions.js";
 import {redirect} from "./store/middlewares/redirect.js";
 
 import App from "./components/app/app";
@@ -27,8 +27,6 @@ const store = createStore(
 
 store.dispatch(fetchOfferList());
 store.dispatch(checkAuth());
-
-store.dispatch(fetchOfferComments(1));
 
 ReactDOM.render(
     <Provider store={store}>
