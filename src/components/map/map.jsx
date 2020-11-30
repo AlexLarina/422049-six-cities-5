@@ -2,11 +2,9 @@ import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import leaflet from "leaflet";
 import PropTypes from "prop-types";
+import {MAP_ZOOM} from "../../lib/const.js";
 
 import "leaflet/dist/leaflet.css";
-
-//const CITY_COORDINATES = [52.38333, 4.9];
-const ZOOM = 13;
 
 const pinIcon = leaflet.icon({
   iconUrl: `/img/pin.svg`,
@@ -20,25 +18,34 @@ const activePinIcon = leaflet.icon({
 class Map extends PureComponent {
   constructor(props) {
     super(props);
+
     this._mapRef = React.createRef();
 
     this._leafletMap = null;
+    this._pins = [];
   }
 
   componentDidMount() {
     this._leafletMap = leaflet.map(`map`, {
       center: this.props.cityCoordinates,
-      ZOOM,
+      MAP_ZOOM,
       zoomControl: false,
       marker: true
     });
 
-    this._leafletMap.setView(this.props.cityCoordinates, ZOOM);
+    this._leafletMap.setView(this.props.cityCoordinates, MAP_ZOOM);
 
     leaflet
-      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-      })
+      .tileLayer(
+          `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
+          {
+            attribution: `
+              &copy;
+              <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
+              contributors
+              &copy;
+              <a href="https://carto.com/attributions">CARTO</a>`
+          })
       .addTo(this._leafletMap);
 
     this._renderPinsOnMap();
@@ -49,18 +56,45 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.activeOfferCoordinates !== prevProps.activeOfferCoordinates) {
+    if (this.props.cityCoordinates !== prevProps.cityCoordinates) {
+
+      this._renderPinsOnMap();
+
+      this._leafletMap.flyTo(
+          this.props.cityCoordinates,
+          MAP_ZOOM,
+          {duration: 0.5}
+      );
+    } else if (this.props.activeOfferCoordinates !== prevProps.activeOfferCoordinates) {
       this._renderPinsOnMap();
       this._renderActivePin();
     }
   }
 
+  omponentWillUnmount() {
+    this._leafletMap.remove();
+    this._pins = null;
+    this._leafletMap = null;
+    this._mapRef.current.remove();
+  }
+
   _renderPinsOnMap() {
-    this.props.coordinates.forEach((coordinates) => {
-      leaflet
-        .marker(coordinates, {icon: pinIcon})
-        .addTo(this._leafletMap);
-    });
+    if (this._leafletMap) {
+      const {coordinates} = this.props;
+
+      this._pins.forEach((pin) => {
+        this._leafletMap.removeLayer(pin);
+      });
+
+      coordinates.map((coordPair) => {
+        this._pins.push(
+            leaflet
+              .marker(coordPair, {icon: pinIcon})
+              .addTo(this._leafletMap)
+        );
+      });
+
+    }
   }
 
   _renderActivePin() {
@@ -70,9 +104,6 @@ class Map extends PureComponent {
   }
 
   render() {
-    // console.log(this.props);
-    // console.log(`from map city coords`);
-    // console.log(this.props.cityCoordinates);
     return (
       <div ref={this._mapRef} id="map" style={{height: `100%`}}></div>
     );
@@ -81,6 +112,7 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   coordinates: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired).isRequired,
+  cityCoordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number).isRequired,
   activeOfferCoordinates: PropTypes.arrayOf(PropTypes.number, PropTypes.number)
 };
 

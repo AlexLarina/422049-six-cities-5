@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import {Link} from 'react-router-dom';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {redirectToRoute} from "../../store/action.js";
+import {addOfferToFavorite} from "../../store/api-actions.js";
 
 const getCardClassByType = (type) => {
   switch (type) {
@@ -10,6 +10,8 @@ const getCardClassByType = (type) => {
       return `cities__place-`;
     case `near`:
       return `near-places__`;
+    case `favorites`:
+      return `favorites__`
     default:
       return ``;
   }
@@ -19,7 +21,12 @@ class PlaceCardScreen extends PureComponent {
   constructor(props) {
     super(props);
 
+    this.state = {
+      favorite: this.props.offer.isFavorite
+    };
+
     this.handleActiveCard = this.handleActiveCard.bind(this);
+    this.handleBookmarkClick = this.handleBookmarkClick.bind(this);
     this.viewFullOffer = this.viewFullOffer.bind(this);
   }
 
@@ -32,8 +39,21 @@ class PlaceCardScreen extends PureComponent {
     // this.props.history.push(`offer/${this.props.id}`);
   }
 
+  handleBookmarkClick() {
+    const {onBookmarkClick} = this.props;
+    this.setState({favorite: !this.props.offer.isFavorite});
+    const statusValue = this.state.favorite ? 1 : 0;
+
+    onBookmarkClick({
+      id: this.props.offer.id,
+      status: statusValue
+    });
+  }
+
   render() {
-    const {offer, handleBookmarkClick} = this.props;
+    const {offer} = this.props;
+    // console.log(offer);
+    // console.log(this.state.favorite);
 
     return (
       <article
@@ -57,7 +77,11 @@ class PlaceCardScreen extends PureComponent {
               <b className="place-card__price-value">&euro;{offer.cost}</b>
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
-            <button className="place-card__bookmark-button button" type="button" onClick={handleBookmarkClick}>
+            <button
+              className={`place-card__bookmark-button button ${this.state.favorite && `place-card__bookmark-button--active`}`}
+              type="button"
+              onClick={this.handleBookmarkClick}
+            >
               <svg className="place-card__bookmark-icon" width="18" height="19">
                 <use xlinkHref="#icon-bookmark"></use>
               </svg>
@@ -82,7 +106,7 @@ class PlaceCardScreen extends PureComponent {
 
 PlaceCardScreen.propTypes = {
   onHover: PropTypes.func.isRequired,
-  handleBookmarkClick: PropTypes.func.isRequired,
+  onBookmarkClick: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
   offer: PropTypes.shape({
@@ -98,9 +122,9 @@ PlaceCardScreen.propTypes = {
 //export default PlaceCardScreen;
 
 const mapDispatchToProps = (dispatch) => ({
-  handleBookmarkClick() {
+  onBookmarkClick(data) {
     // @TO-DO пост запрос на добавление избранное
-    // dispatch(redirectToRoute(`/favorites`));
+    dispatch(addOfferToFavorite(data));
   }
 });
 

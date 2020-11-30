@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 
 import FavoritesScreenEmpty from "../favorites-screen-empty/favorites-screen-empty.jsx";
+import FavoritesList from "../favorites-list/favorites-list.jsx";
 
 const FavoritesScreen = (props) => {
   const {userData, favoriteOfferList} = props;
@@ -35,8 +36,7 @@ const FavoritesScreen = (props) => {
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           {favoriteOfferList.length ?
-            <section className="favorites">
-              <h1 className="favorites__title">Saved listing</h1></section> :
+            <FavoritesList /> :
             <FavoritesScreenEmpty />
           }
           {/* <section className="favorites">

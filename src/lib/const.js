@@ -22,4 +22,6 @@ const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
-export {CITIES, SORT_TYPES, SORT_LABELS, INITIAL_CITY, INITIAL_CITY_COORDS, AuthorizationStatus};
+const MAP_ZOOM = 13;
+
+export {CITIES, SORT_TYPES, SORT_LABELS, INITIAL_CITY, INITIAL_CITY_COORDS, AuthorizationStatus, MAP_ZOOM};

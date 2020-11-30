@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 import {AuthorizationStatus} from "../../lib/const.js";
-import {redirectToRoute, updateCityCoordinates} from "../../store/action.js";
+import {redirectToRoute} from "../../store/action.js";
 import {getLocationCoordinates} from "../../lib/adapter.js";
 
 import OfferListCities from "../offer-list-cities/offer-list-cities.jsx";
@@ -14,20 +14,6 @@ import Sort from "../sort/sort.jsx";
 class MainScreen extends PureComponent {
   constructor(props) {
     super(props);
-
-    this._handleLocationClick = this._handleLocationClick.bind(this);
-  }
-
-  _handleLocationClick() {
-    const {city, cityList, onLocationClick} = this.props;
-
-    const cityCoordinates = getLocationCoordinates(
-        cityList.find((cityItem) => cityItem.name === city)
-        .location
-    );
-
-    // @TO-DO ищем для текущего города, а не для изменившегося
-    onLocationClick(cityCoordinates);
   }
 
   render() {
@@ -78,7 +64,7 @@ class MainScreen extends PureComponent {
         <main className="page__main page__main--index">
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
-            <section className="locations container" onClick={this._handleLocationClick}>
+            <section className="locations container">
               <CityList />
             </section>
           </div>
@@ -120,7 +106,8 @@ MainScreen.propTypes = {
   onAuthUserClick: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     email: PropTypes.string
-  })
+  }),
+  cityCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired
 };
 
 const mapStateToProps = ({PROCESS, DATA, USER}) => ({
@@ -136,9 +123,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onAuthUserClick() {
     dispatch(redirectToRoute(`/favorites`));
-  },
-  onLocationClick(coordinates) {
-    dispatch(updateCityCoordinates(coordinates));
   }
 });
 

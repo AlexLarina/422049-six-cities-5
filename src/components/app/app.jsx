@@ -90,7 +90,8 @@ App.propTypes = {
   userData: PropTypes.shape({
     email: PropTypes.string
   }),
-  openOffer: PropTypes.func.isRequired
+  openOffer: PropTypes.func.isRequired,
+  openFavorites: PropTypes.func.isRequired
 };
 
 export {App};

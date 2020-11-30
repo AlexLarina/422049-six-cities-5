@@ -31,6 +31,10 @@ export const fetchFavoriteOffers = () => (dispatch, _getState, api) => (
     .then(({data}) => dispatch(loadFavoriteOffers(data)))
 );
 
+export const addOfferToFavorite = ({id, status}) => (dispatch, _getState, api) => (
+  api.post(`/favorite/${id}/${status}`)
+);
+
 export const fetchOfferComments = (id) => (dispatch, _getState, api) => (
   api.get(`/comments/${id}`)
     .then(({data}) => dispatch(loadOfferComments(data)))
