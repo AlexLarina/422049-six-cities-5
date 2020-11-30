@@ -52,7 +52,8 @@ exports[`Render OfferListCities 1`] = `
           </span>
         </div>
         <button
-          className="place-card__bookmark-button button"
+          className="place-card__bookmark-button button undefined"
+          onClick={[Function]}
           type="button"
         >
           <svg

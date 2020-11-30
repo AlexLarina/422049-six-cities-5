@@ -1,6 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {MainScreen} from "./main-screen.jsx";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+import {MemoryRouter} from "react-router-dom";
 
 const offer = {
   id: 0,
@@ -27,18 +30,33 @@ const userData = {
   email: ``
 };
 
+const mockStore = configureStore()({
+  DATA: {
+    cityList: []
+  },
+  PROCESS: {
+    city: ``
+  }
+});
+
+jest.mock(`../map/map`, () => `Map`);
+
 it(`Render MainScreen`, () => {
   const tree = renderer
     .create(
-        <MainScreen
-          rentItemsAmount={0}
-          offerList={[offer]}
-          city={``}
-          activeOfferId={``}
-          authorizationStatus={``}
-          onSignInClick={() => {}}
-          userData={userData}
-        />
+        <Provider store={mockStore}>
+          <MemoryRouter>
+            <MainScreen
+              rentItemsAmount={0}
+              offerList={[offer]}
+              city={``}
+              activeOfferId={``}
+              authorizationStatus={``}
+              onSignInClick={() => {}}
+              userData={userData}
+            />
+          </MemoryRouter>
+        </Provider>
     )
     .toJSON();
 

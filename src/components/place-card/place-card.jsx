@@ -11,7 +11,7 @@ const getCardClassByType = (type) => {
     case `near`:
       return `near-places__`;
     case `favorites`:
-      return `favorites__`
+      return `favorites__`;
     default:
       return ``;
   }
@@ -41,8 +41,10 @@ class PlaceCardScreen extends PureComponent {
 
   handleBookmarkClick() {
     const {onBookmarkClick} = this.props;
-    this.setState({favorite: !this.props.offer.isFavorite});
-    const statusValue = this.state.favorite ? 1 : 0;
+
+    this.setState({favorite: !(this.props.offer.isFavorite)});
+
+    const statusValue = !(this.props.offer.isFavorite) ? 1 : 0;
 
     onBookmarkClick({
       id: this.props.offer.id,
@@ -52,8 +54,6 @@ class PlaceCardScreen extends PureComponent {
 
   render() {
     const {offer} = this.props;
-    // console.log(offer);
-    // console.log(this.state.favorite);
 
     return (
       <article
@@ -110,20 +110,19 @@ PlaceCardScreen.propTypes = {
   id: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
   offer: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     premium: PropTypes.bool,
     photo: PropTypes.string.isRequired,
     cost: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired
+    rating: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool.isRequired
   }).isRequired
 };
 
-//export default PlaceCardScreen;
-
 const mapDispatchToProps = (dispatch) => ({
   onBookmarkClick(data) {
-    // @TO-DO пост запрос на добавление избранное
     dispatch(addOfferToFavorite(data));
   }
 });

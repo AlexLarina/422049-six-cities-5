@@ -2,6 +2,8 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {MemoryRouter} from 'react-router-dom';
 import OfferListNeighbors from "./offer-list-neighbors.jsx";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
 
 const offer = {
   id: 0,
@@ -24,14 +26,22 @@ const offer = {
   description: ``
 };
 
+const mockStore = configureStore()({
+  DATA: {
+    offerList: []
+  }
+});
+
 it(`Render OfferListNeighbors`, () => {
   const tree = renderer
     .create(
-        <MemoryRouter>
-          <OfferListNeighbors
-            offerList={[offer]}
-          />
-        </MemoryRouter>
+        <Provider store={mockStore}>
+          <MemoryRouter>
+            <OfferListNeighbors
+              offerList={[]}
+            />
+          </MemoryRouter>
+        </Provider>
     )
     .toJSON();
 

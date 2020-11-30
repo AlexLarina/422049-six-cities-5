@@ -1,4 +1,4 @@
-import {INITIAL_CITY} from "../../../lib/const.js";
+import {INITIAL_CITY, INITIAL_CITY_COORDS} from "../../../lib/const.js";
 import {appProcess} from "./app-process.js";
 import {ActionType} from "../../action.js";
 
@@ -9,6 +9,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
   expect(appProcess(void 0, {})).toEqual({
     city: INITIAL_CITY,
     activeOfferId: null,
+    cityCoordinates: INITIAL_CITY_COORDS
   });
 });
 

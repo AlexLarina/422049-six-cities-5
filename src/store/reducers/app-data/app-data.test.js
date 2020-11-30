@@ -42,7 +42,10 @@ const offerCommentsList = [{
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(appData(void 0, {})).toEqual({
     offerList: [],
-    offerCommentsList: []
+    offerCommentsList: [],
+    offerNeighboorsList: [],
+    cityList: [],
+    favoriteOfferList: []
   });
 });
 

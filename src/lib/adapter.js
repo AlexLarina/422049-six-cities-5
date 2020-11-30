@@ -1,9 +1,5 @@
 import {extend} from "./util.js";
 
-// city: {name: "Cologne", location: {latitude: 50.938361, longitude: 6.959974, zoom: 13}}
-// host: {id: 25, name: "Angelina", is_pro: true, avatar_url: "img/avatar-angelina.jpg"}
-// images: ["https://assets.htmlacademy.ru/intensives/javascript-3/hotel/15.jpg",…]
-
 export const getLocationCoordinates = (location) => [location.latitude, location.longitude];
 
 export const adaptToClient = (offer) => {

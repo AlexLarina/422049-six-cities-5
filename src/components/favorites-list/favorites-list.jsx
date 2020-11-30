@@ -1,4 +1,5 @@
 import React, {PureComponent} from "react";
+import PropTypes from "prop-types";
 import PlaceCardFavorites from "../place-card-favorites/place-card-favorites.jsx";
 
 class FavoritesList extends PureComponent {
@@ -7,7 +8,7 @@ class FavoritesList extends PureComponent {
   }
 
   render() {
-    const {favoritesList} = this.props;
+    const {favoriteOfferList} = this.props;
 
     return (
       <section className="favorites">
@@ -22,7 +23,15 @@ class FavoritesList extends PureComponent {
               </div>
             </div>
             <div className="favorites__places">
-
+              {favoriteOfferList.map((offer, i) => {
+                return (
+                  <PlaceCardFavorites
+                    key={`${i}-${offer.id}`}
+                    id={`${offer.id}`}
+                    offer={offer}
+                    onHover={() => {}}
+                  />);
+              })}
             </div>
           </li>
         </ul>
@@ -30,5 +39,12 @@ class FavoritesList extends PureComponent {
     );
   }
 }
+
+FavoritesList.propTypes = {
+  favoriteOfferList: PropTypes.arrayOf(PropTypes.shape({
+    premium: PropTypes.bool,
+    photo: PropTypes.string.isRequired
+  })).isRequired,
+};
 
 export default FavoritesList;

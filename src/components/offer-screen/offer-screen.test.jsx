@@ -1,6 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {OfferScreen} from "./offer-screen.jsx";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+import {MemoryRouter} from "react-router-dom";
 
 const offer = {
   id: 0,
@@ -22,13 +25,31 @@ const offer = {
   description: ``
 };
 
+const mockStore = configureStore()({
+  DATA: {
+    offerList: [],
+    offerCommentsList: [],
+  },
+  PROCESS: {
+    activeOfferId: ``
+  },
+  USER: {
+    authorizationStatus: ``
+  }
+});
+
 it(`Render OfferScreen`, () => {
   const tree = renderer
     .create(
-        <OfferScreen
-          offer={offer}
-          authorizationStatus={``}
-        />
+        <Provider store={mockStore}>
+          <MemoryRouter>
+            <OfferScreen
+              offer={offer}
+              offerList={[]}
+              authorizationStatus={``}
+            />
+          </MemoryRouter>
+        </Provider>
     )
     .toJSON();
 
