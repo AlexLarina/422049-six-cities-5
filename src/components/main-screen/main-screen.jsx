@@ -99,15 +99,15 @@ MainScreen.propTypes = {
     premium: PropTypes.bool,
     photo: PropTypes.string.isRequired
   })).isRequired,
-  city: PropTypes.string.isRequired,
+  city: PropTypes.string,
   activeOfferId: PropTypes.string,
-  authorizationStatus: PropTypes.string.isRequired,
+  authorizationStatus: PropTypes.string,
   onSignInClick: PropTypes.func.isRequired,
   onAuthUserClick: PropTypes.func.isRequired,
   userData: PropTypes.shape({
     email: PropTypes.string
   }),
-  cityCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired).isRequired
+  cityCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired)
 };
 
 const mapStateToProps = ({PROCESS, DATA, USER}) => ({

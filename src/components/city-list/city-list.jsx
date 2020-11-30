@@ -52,11 +52,11 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 CityList.propTypes = {
-  city: PropTypes.string.isRequired,
+  city: PropTypes.string,
   changeCity: PropTypes.func.isRequired,
   cityList: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired
-  })).isRequired,
+  })),
 };
 
 export {CityList};
