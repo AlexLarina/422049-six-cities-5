@@ -12,14 +12,6 @@ class CityList extends PureComponent {
 
   render() {
     const {city, cityList, changeCity} = this.props;
-    // const cityCoordinates = getLocationCoordinates(
-    //     cityList.find((cityItem) => cityItem.name === city).location
-    // );
-    // console.log('city from citylist');
-    // console.log(city);
-    // console.log('cityList from city list');
-    // console.log(cityList);
-    // console.log(cityList.find((cityItem) => cityItem.name === city));
 
     return (
       <ul className="locations__list tabs__list">
@@ -63,13 +55,7 @@ CityList.propTypes = {
   city: PropTypes.string.isRequired,
   changeCity: PropTypes.func.isRequired,
   cityList: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.shape({
-      location: PropTypes.shape({
-        latitude: PropTypes.number.isRequired,
-        longitude: PropTypes.number.isRequired,
-        zoom: PropTypes.number.isRequired
-      })
-    })
+    name: PropTypes.string.isRequired
   })).isRequired,
 };
 
