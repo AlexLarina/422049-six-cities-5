@@ -70,9 +70,9 @@ class Map extends PureComponent {
   }
 
   render() {
-    console.log(this.props);
-    console.log(`from map city coords`);
-    console.log(this.props.cityCoordinates);
+    // console.log(this.props);
+    // console.log(`from map city coords`);
+    // console.log(this.props.cityCoordinates);
     return (
       <div ref={this._mapRef} id="map" style={{height: `100%`}}></div>
     );

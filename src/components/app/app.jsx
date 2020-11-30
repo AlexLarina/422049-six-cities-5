@@ -4,7 +4,7 @@ import {Switch, Route, Router as BrowserRouter} from "react-router-dom";
 import browserHistory from "../../services/browser-history.js";
 import {connect} from "react-redux";
 import {getOfferInCity} from "../../store/selectors/city-selector.js";
-import {fetchOfferComments, fetchNearbyOffers} from "../../store/api-actions.js";
+import {fetchOfferComments, fetchNearbyOffers, fetchFavoriteOffers} from "../../store/api-actions.js";
 
 import PrivateRoute from "../private-route/private-route";
 import MainScreen from "../main-screen/main-screen.jsx";
@@ -14,7 +14,7 @@ import FavoritesScreen from "../favorites-screen/favorites-screen.jsx";
 import OfferScreen from "../offer-screen/offer-screen.jsx";
 
 const App = (props) => {
-  const {offerList, activeOfferId, userData, openOffer} = props;
+  const {offerList, activeOfferId, userData, openOffer, openFavorites} = props;
 
   return (
     <BrowserRouter history={browserHistory}>
@@ -39,6 +39,7 @@ const App = (props) => {
 
         <PrivateRoute exact path="/favorites"
           render={() => {
+            openFavorites();
             return (
               <FavoritesScreen />
             );
@@ -73,6 +74,9 @@ const mapDispatchToProps = (dispatch) => ({
     // а за каким хуем она собственно нужна ?
     dispatch(fetchOfferComments(id));
     dispatch(fetchNearbyOffers(id));
+  },
+  openFavorites() {
+    dispatch(fetchFavoriteOffers());
   }
 });
 

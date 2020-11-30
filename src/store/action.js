@@ -10,7 +10,8 @@ export const ActionType = {
   LOAD_USER_DATA: `LOAD_USER_DATA`,
   LOAD_OFFER_COMMENTS: `LOAD_OFFER_COMMENTS`,
   LOAD_OFFER_NEIGHBOORS: `LOAD_OFFER_NEIGHBOORS`,
-  UPDATE_CITY_COORDINATES: `UPDATE_CITY_COORDINATES`
+  UPDATE_CITY_COORDINATES: `UPDATE_CITY_COORDINATES`,
+  LOAD_FAVORITE_OFFERS: `LOAD_FAVORITE_OFFERS`
 };
 
 // @TO-DO вынести все экспорты в конец файла
@@ -69,4 +70,9 @@ export const loadOfferNeighboors = (neighboors) => ({
 export const updateCityCoordinates = (coordinates) => ({
   type: ActionType.UPDATE_CITY_COORDINATES,
   payload: coordinates
+});
+
+export const loadFavoriteOffers = (offers) => ({
+  type: ActionType.LOAD_FAVORITE_OFFERS,
+  payload: offers
 });

@@ -6,7 +6,8 @@ const initialState = {
   offerList: [],
   offerCommentsList: [],
   offerNeighboorsList: [],
-  cityList: []
+  cityList: [],
+  favoriteOfferList: []
 };
 
 const adaptOfferListToClient = (offers) => offers.map((offer) => adaptToClient(offer));
@@ -26,6 +27,10 @@ const appData = (state = initialState, action) => {
     case ActionType.LOAD_OFFER_NEIGHBOORS:
       return extend(state, {
         offerNeighboorsList: adaptOfferListToClient(action.payload)
+      });
+    case ActionType.LOAD_FAVORITE_OFFERS:
+      return extend(state, {
+        favoriteOfferList: action.payload
       });
   }
 

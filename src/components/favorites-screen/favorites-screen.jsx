@@ -1,6 +1,12 @@
 import React from "react";
+import {connect} from "react-redux";
 
-const FavoritesScreen = () => {
+import FavoritesScreenEmpty from "../favorites-screen-empty/favorites-screen-empty.jsx";
+
+const FavoritesScreen = (props) => {
+  const {userData, favoriteOfferList} = props;
+  console.log(favoriteOfferList);
+
   return (
     <div className="page">
       <header className="header">
@@ -17,7 +23,7 @@ const FavoritesScreen = () => {
                   <a className="header__nav-link header__nav-link--profile" href="#">
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                    <span className="header__user-name user__name">{userData.email}</span>
                   </a>
                 </li>
               </ul>
@@ -28,7 +34,12 @@ const FavoritesScreen = () => {
 
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
-          <section className="favorites">
+          {favoriteOfferList.length ?
+            <section className="favorites">
+              <h1 className="favorites__title">Saved listing</h1></section> :
+            <FavoritesScreenEmpty />
+          }
+          {/* <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
               <li className="favorites__locations-items">
@@ -149,7 +160,7 @@ const FavoritesScreen = () => {
                 </div>
               </li>
             </ul>
-          </section>
+          </section> */}
         </div>
       </main>
       <footer className="footer container">
@@ -161,4 +172,10 @@ const FavoritesScreen = () => {
   );
 };
 
-export default FavoritesScreen;
+const mapStateToProps = ({USER, DATA}) => ({
+  userData: USER.userData,
+  favoriteOfferList: DATA.favoriteOfferList
+});
+
+export {FavoritesScreen};
+export default connect(mapStateToProps)(FavoritesScreen);

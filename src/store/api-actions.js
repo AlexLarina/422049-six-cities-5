@@ -5,6 +5,7 @@ import {
   loadUserData,
   loadOfferComments,
   loadOfferNeighboors,
+  loadFavoriteOffers
 } from "./action.js";
 import {AuthorizationStatus} from "../lib/const.js";
 
@@ -23,6 +24,11 @@ export const fetchOffer = (id) => (dispatch, _getState, api) => (
 export const fetchNearbyOffers = (id) => (dispatch, _getState, api) => (
   api.get(`/hotels/${id}/nearby`)
     .then(({data}) => dispatch(loadOfferNeighboors(data)))
+);
+
+export const fetchFavoriteOffers = () => (dispatch, _getState, api) => (
+  api.get(`/favorite`)
+    .then(({data}) => dispatch(loadFavoriteOffers(data)))
 );
 
 export const fetchOfferComments = (id) => (dispatch, _getState, api) => (
