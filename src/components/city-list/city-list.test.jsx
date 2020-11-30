@@ -7,7 +7,8 @@ it(`Render CityList`, () => {
     .create(
         <CityList
           city={``}
-          handleClick={() => {}}
+          changeCity={() => {}}
+          cityList={[]}
         />
     )
     .toJSON();

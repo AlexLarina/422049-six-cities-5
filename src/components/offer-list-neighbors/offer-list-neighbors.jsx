@@ -24,13 +24,13 @@ class OfferListNeighbors extends PureComponent {
   // className={`${this.props.className && `${getListClassByType(this.props.className)}list`} places__list`}
 
   render() {
-    const {offerList} = this.props;
+    const {offerNeighboorsList} = this.props;
 
     return (
       <div
         className="near-places__list places__list"
       >
-        {offerList.map((offer, i) => (
+        {offerNeighboorsList.map((offer, i) => (
           <PlaceCardNeighbour
             key={`${i}-${offer.id}`}
             id={`${offer.id}`}
@@ -44,14 +44,14 @@ class OfferListNeighbors extends PureComponent {
 }
 
 OfferListNeighbors.propTypes = {
-  offerList: PropTypes.arrayOf(PropTypes.shape({
+  offerNeighboorsList: PropTypes.arrayOf(PropTypes.shape({
     premium: PropTypes.bool,
     photo: PropTypes.string.isRequired
   })).isRequired
 };
 
 const mapStateToProps = ({DATA}) => ({
-  offerList: DATA.offerNeighboorsList
+  offerNeighboorsList: DATA.offerNeighboorsList
 });
 
 export {OfferListNeighbors};

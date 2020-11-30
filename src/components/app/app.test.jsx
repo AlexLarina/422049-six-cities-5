@@ -54,6 +54,10 @@ it(`Render App`, () => {
               activeOfferId={``}
               userData={userData}
               openOffer={() => {}}
+              openFavorites={() => {}}
+              city={``}
+              authorizationStatus={``}
+              cityCoordinates={[]}
             />
           </MemoryRouter>
         </Provider>

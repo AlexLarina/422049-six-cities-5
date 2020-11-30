@@ -3,10 +3,11 @@ import {createAPI} from "../../../services/api.js";
 import {appData} from "./app-data.js";
 import {ActionType} from "../../action.js";
 import {fetchOfferList} from "../../api-actions.js";
+import {adaptOfferListToClient} from "../../../lib/adapter.js";
 
 const api = createAPI(() => {});
 
-const offerList = [{
+const offerListMocks = [{
   id: 0,
   premium: true,
   photo: ``,
@@ -16,9 +17,7 @@ const offerList = [{
   rating: 0,
   bedrooms: 0,
   maxGuests: 0,
-  owner: {
-    name: ``
-  },
+  owner: {},
   household: [],
   images: [],
   neighbors: [],
@@ -54,9 +53,9 @@ it(`Reducer should update offers by load offers`, () => {
     offerList: [],
   }, {
     type: ActionType.LOAD_OFFERS,
-    payload: offerList,
+    payload: offerListMocks,
   })).toEqual({
-    offerList,
+    offerListMocks,
   });
 });
 

@@ -110,14 +110,14 @@ PlaceCardScreen.propTypes = {
   id: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
   offer: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.number,
     premium: PropTypes.bool,
     photo: PropTypes.string.isRequired,
     cost: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    isFavorite: PropTypes.bool.isRequired
+    isFavorite: PropTypes.bool
   }).isRequired
 };
 

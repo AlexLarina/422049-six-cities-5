@@ -27,7 +27,7 @@ const offer = {
 
 const mockStore = configureStore()({
   DATA: {
-    offerList: [],
+    offerNeighboorsList: [],
     offerCommentsList: [],
   },
   PROCESS: {
@@ -38,6 +38,8 @@ const mockStore = configureStore()({
   }
 });
 
+jest.mock(`../map/map`, () => `Map`);
+
 it(`Render OfferScreen`, () => {
   const tree = renderer
     .create(
@@ -45,7 +47,7 @@ it(`Render OfferScreen`, () => {
           <MemoryRouter>
             <OfferScreen
               offer={offer}
-              offerList={[]}
+              offerNeighboorsList={[]}
               authorizationStatus={``}
             />
           </MemoryRouter>

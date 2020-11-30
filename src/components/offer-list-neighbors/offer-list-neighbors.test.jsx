@@ -28,7 +28,7 @@ const offer = {
 
 const mockStore = configureStore()({
   DATA: {
-    offerList: []
+    offerNeighboorsList: []
   }
 });
 
@@ -38,7 +38,7 @@ it(`Render OfferListNeighbors`, () => {
         <Provider store={mockStore}>
           <MemoryRouter>
             <OfferListNeighbors
-              offerList={[]}
+              offerNeighboorsList={[]}
             />
           </MemoryRouter>
         </Provider>

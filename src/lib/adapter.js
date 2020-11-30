@@ -2,7 +2,7 @@ import {extend} from "./util.js";
 
 export const getLocationCoordinates = (location) => [location.latitude, location.longitude];
 
-export const adaptToClient = (offer) => {
+const adaptToClient = (offer) => {
   return extend(offer, {
     photo: offer.preview_image,
     premium: offer.is_premium,
@@ -20,3 +20,5 @@ export const adaptToClient = (offer) => {
     reviews: []
   });
 };
+
+export const adaptOfferListToClient = (offers) => offers.map((offer) => adaptToClient(offer));

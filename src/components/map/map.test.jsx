@@ -11,16 +11,21 @@ const mockStore = configureStore()({
   }
 });
 
+
 // jest.mock(`./map`, () => `Map`);
 
 it(`Render Map`, () => {
+  const div = document.createElement(`div`);
+  div.id = `map`;
+  document.body.appendChild(div);
   const tree = renderer
     .create(
         <Provider store={mockStore}>
           <MemoryRouter>
             <Map
               coordinates={[]}
-              activeOfferCoordinates={[]}
+              cityCoordinates={[52.37454, 4.897976]}
+              activeOfferCoordinates={[52.37454, 4.897976]}
             />
           </MemoryRouter>
         </Provider>

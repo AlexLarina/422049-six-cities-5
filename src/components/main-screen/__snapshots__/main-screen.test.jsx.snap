@@ -46,6 +46,7 @@ exports[`Render MainScreen 1`] = `
                 />
                 <span
                   className="header__user-name user__name"
+                  onClick={[Function]}
                 >
                   
                 </span>
@@ -361,6 +362,7 @@ exports[`Render MainScreen 1`] = `
           >
             <Map
               activeOfferCoordinates={null}
+              cityCoordinates={Array []}
               coordinates={
                 Array [
                   Array [],

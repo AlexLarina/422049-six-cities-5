@@ -53,6 +53,8 @@ it(`Render MainScreen`, () => {
               activeOfferId={``}
               authorizationStatus={``}
               onSignInClick={() => {}}
+              onAuthUserClick={() => {}}
+              cityCoordinates={[]}
               userData={userData}
             />
           </MemoryRouter>
