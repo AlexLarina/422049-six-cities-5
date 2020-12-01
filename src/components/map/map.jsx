@@ -65,7 +65,9 @@ class Map extends PureComponent {
           MAP_ZOOM,
           {duration: 0.5}
       );
-    } else if (this.props.activeOfferCoordinates !== prevProps.activeOfferCoordinates) {
+    } else if (this.props.activeOfferCoordinates &&
+      (this.props.activeOfferCoordinates !== prevProps.activeOfferCoordinates)
+    ) {
       this._renderPinsOnMap();
       this._renderActivePin();
     }

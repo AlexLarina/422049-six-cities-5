@@ -10,6 +10,10 @@ import Map from "../map/map.jsx";
 import OfferListNeighbors from "../offer-list-neighbors/offer-list-neighbors.jsx";
 import Header from "../header/header.jsx";
 
+import withActiveItem from "../../hocs/withActiveItem/withActiveItem.jsx";
+
+const OfferListNeighborsWrapped = withActiveItem(OfferListNeighbors);
+
 class OfferScreen extends PureComponent {
   constructor(props) {
     super(props);
@@ -121,9 +125,7 @@ class OfferScreen extends PureComponent {
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
-              <OfferListNeighbors
-
-              />
+              <OfferListNeighborsWrapped />
             </section>
           </div>
         </main>

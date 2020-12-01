@@ -1,41 +1,38 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {setActiveOffer} from "../../store/action.js";
 
 import PlaceCardCities from "../place-card-cities/place-card-cities.jsx";
 
-class OfferListCities extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const OfferListCities = (props) => {
+  const {offerList, onHover} = props;
+  // console.log('from offer list city props');
+  // console.log(props);
 
-  render() {
-    const {offerList, handleActiveOffer} = this.props;
-
-    return (
-      <div
-        className="cities__places-list places__list tabs__content"
-      >
-        {offerList.map((offer, i) => (
-          <PlaceCardCities
-            key={`${i}-${offer.id}`}
-            id={`${offer.id}`}
-            offer={offer}
-            onHover={handleActiveOffer}
-          />
-        ))}
-      </div>
-    );
-  }
-}
+  return (
+    <div
+      className="cities__places-list places__list tabs__content"
+    >
+      {offerList.map((offer, i) => (
+        <PlaceCardCities
+          key={`${i}-${offer.id}`}
+          id={`${offer.id}`}
+          offer={offer}
+          onHover={onHover}
+        />
+      ))}
+    </div>
+  );
+};
 
 OfferListCities.propTypes = {
   offerList: PropTypes.arrayOf(PropTypes.shape({
     premium: PropTypes.bool,
     photo: PropTypes.string.isRequired
   })).isRequired,
-  handleActiveOffer: PropTypes.func.isRequired
+  handleActiveOffer: PropTypes.func.isRequired,
+  onHover: PropTypes.func
 };
 
 const mapDispatchToProps = (dispatch) => ({

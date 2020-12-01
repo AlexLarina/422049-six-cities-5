@@ -10,6 +10,10 @@ import CityList from "../city-list/city-list.jsx";
 import Sort from "../sort/sort.jsx";
 import Header from "../header/header.jsx";
 
+import withActiveItem from "../../hocs/withActiveItem/withActiveItem.jsx";
+
+const OfferListCitiesWrapped = withActiveItem(OfferListCities);
+
 class MainScreen extends PureComponent {
   constructor(props) {
     super(props);
@@ -45,7 +49,7 @@ class MainScreen extends PureComponent {
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">{rentItemsAmount} places to stay in {city}</b>
                 <Sort />
-                <OfferListCities offerList={offerList} />
+                <OfferListCitiesWrapped offerList={offerList} />
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map">

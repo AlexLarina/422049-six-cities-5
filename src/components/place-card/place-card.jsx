@@ -105,7 +105,7 @@ class PlaceCardScreen extends PureComponent {
 }
 
 PlaceCardScreen.propTypes = {
-  onHover: PropTypes.func.isRequired,
+  onHover: PropTypes.func,
   onBookmarkClick: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
