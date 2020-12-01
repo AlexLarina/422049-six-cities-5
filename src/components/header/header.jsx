@@ -52,8 +52,8 @@ const mapStateToProps = ({USER}) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSignInClick(url) {
-    dispatch(redirectToRoute(url));
+  onSignInClick() {
+    dispatch(redirectToRoute(`/login`));
   },
   onAuthUserClick() {
     dispatch(redirectToRoute(`/favorites`));
