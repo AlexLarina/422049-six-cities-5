@@ -51,12 +51,6 @@ export const loadUserData = (data) => ({
   payload: data
 });
 
-// @TO-DO это вот зачем вообще надо делать ?
-export const loadExactOffer = (offer) => ({
-  type: ActionType.LOAD_EXACT_OFFER,
-  payload: offer
-});
-
 export const loadOfferComments = (comments) => ({
   type: ActionType.LOAD_OFFER_COMMENTS,
   payload: comments

@@ -15,13 +15,6 @@ export const fetchOfferList = () => (dispatch, _getState, api) => (
     .then(({data}) => dispatch(loadOffers(adaptOfferListToClient(data))))
 );
 
-// @TO-DO в душе неясно, зачем это вот вообще делать, когда все данные приходят в hotels,
-// а комментарии добавляются и загружаются отдельно
-export const fetchOffer = (id) => (dispatch, _getState, api) => (
-  api.get(`/hotels/${id}`)
-    .then((data) => data)
-);
-
 export const fetchNearbyOffers = (id) => (dispatch, _getState, api) => (
   api.get(`/hotels/${id}/nearby`)
     .then(({data}) => dispatch(loadOfferNeighboors(data)))
