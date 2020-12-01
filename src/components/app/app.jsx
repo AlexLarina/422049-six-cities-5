@@ -93,7 +93,6 @@ App.propTypes = {
   }),
   openOffer: PropTypes.func.isRequired,
   openFavorites: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired
 };
 
 export {App};
