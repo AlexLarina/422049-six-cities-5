@@ -78,7 +78,7 @@ exports[`Render App 1`] = `
           >
             <a
               className="locations__item-link tabs__item
-                "
+              "
               href="#"
             >
               <span
@@ -93,7 +93,7 @@ exports[`Render App 1`] = `
           >
             <a
               className="locations__item-link tabs__item
-                "
+              "
               href="#"
             >
               <span
@@ -108,7 +108,7 @@ exports[`Render App 1`] = `
           >
             <a
               className="locations__item-link tabs__item
-                "
+              "
               href="#"
             >
               <span
@@ -123,7 +123,7 @@ exports[`Render App 1`] = `
           >
             <a
               className="locations__item-link tabs__item
-                "
+              "
               href="#"
             >
               <span
@@ -138,7 +138,7 @@ exports[`Render App 1`] = `
           >
             <a
               className="locations__item-link tabs__item
-                "
+              "
               href="#"
             >
               <span
@@ -153,7 +153,7 @@ exports[`Render App 1`] = `
           >
             <a
               className="locations__item-link tabs__item
-                "
+              "
               href="#"
             >
               <span
@@ -359,7 +359,12 @@ exports[`Render App 1`] = `
             className="cities__map map"
           >
             <Map
-              activeOfferCoordinates={null}
+              activeOfferCoordinates={
+                Array [
+                  0,
+                  0,
+                ]
+              }
               coordinates={
                 Array [
                   Array [],

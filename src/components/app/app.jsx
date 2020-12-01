@@ -51,6 +51,7 @@ const App = (props) => {
           render={(routeProps) => {
             const offerId = routeProps.match.params.id;
             const offer = offerList.find((offerItem) => offerItem.id === parseInt(offerId, 10));
+            console.log(offerId);
             openOffer(offerId);
             return (
               <OfferScreen

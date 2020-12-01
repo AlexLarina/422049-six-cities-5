@@ -23,7 +23,14 @@ const offer = {
   reviews: [],
   neighbors: [],
   coordinates: [],
-  description: ``
+  description: ``,
+  city: {
+    name: ``,
+    location: {
+      latitude: 0,
+      longitude: 0,
+    }
+  }
 };
 
 const userData = {

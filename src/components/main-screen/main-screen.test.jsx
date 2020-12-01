@@ -5,6 +5,14 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {MemoryRouter} from "react-router-dom";
 
+const cityMock = {
+  name: ``,
+  location: {
+    latitude: 0,
+    longitude: 0,
+  }
+};
+
 const offer = {
   id: 0,
   premium: true,
@@ -23,7 +31,8 @@ const offer = {
   reviews: [],
   neighbors: [],
   coordinates: [],
-  description: ``
+  description: ``,
+  city: cityMock
 };
 
 const userData = {
@@ -53,7 +62,7 @@ it(`Render MainScreen`, () => {
             <MainScreen
               rentItemsAmount={0}
               offerList={[offer]}
-              city={``}
+              city={cityMock}
               activeOfferId={0}
               authorizationStatus={``}
               onSignInClick={() => {}}

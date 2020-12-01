@@ -22,7 +22,14 @@ const offer = {
   images: [],
   neighbors: [],
   coordinates: [],
-  description: ``
+  description: ``,
+  city: {
+    name: ``,
+    location: {
+      latitude: 0,
+      longitude: 0,
+    }
+  }
 };
 
 const mockStore = configureStore()({

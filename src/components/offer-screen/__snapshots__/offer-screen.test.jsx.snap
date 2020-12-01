@@ -249,8 +249,8 @@ exports[`Render OfferScreen 1`] = `
           activeOfferCoordinates={Array []}
           cityCoordinates={
             Array [
-              52.38333,
-              4.9,
+              0,
+              0,
             ]
           }
           coordinates={Array []}

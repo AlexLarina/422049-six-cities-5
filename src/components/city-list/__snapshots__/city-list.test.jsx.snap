@@ -9,7 +9,7 @@ exports[`Render CityList 1`] = `
   >
     <a
       className="locations__item-link tabs__item
-                "
+              "
       href="#"
     >
       <span
@@ -24,7 +24,7 @@ exports[`Render CityList 1`] = `
   >
     <a
       className="locations__item-link tabs__item
-                "
+              "
       href="#"
     >
       <span
@@ -39,7 +39,7 @@ exports[`Render CityList 1`] = `
   >
     <a
       className="locations__item-link tabs__item
-                "
+              "
       href="#"
     >
       <span
@@ -54,7 +54,7 @@ exports[`Render CityList 1`] = `
   >
     <a
       className="locations__item-link tabs__item
-                "
+              "
       href="#"
     >
       <span
@@ -69,7 +69,7 @@ exports[`Render CityList 1`] = `
   >
     <a
       className="locations__item-link tabs__item
-                "
+              "
       href="#"
     >
       <span
@@ -84,7 +84,7 @@ exports[`Render CityList 1`] = `
   >
     <a
       className="locations__item-link tabs__item
-                "
+              "
       href="#"
     >
       <span

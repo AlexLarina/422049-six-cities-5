@@ -29,10 +29,11 @@ export const addOfferToFavorite = ({id, status}) => (dispatch, _getState, api) =
   api.post(`/favorite/${id}/${status}`)
 );
 
-export const fetchOfferComments = (id) => (dispatch, _getState, api) => (
-  api.get(`/comments/${id}`)
-    .then(({data}) => dispatch(loadOfferComments(data)))
-);
+export const fetchOfferComments = (id) => (dispatch, _getState, api) => {
+  console.log('fetchOfferComments id = ' + id);
+  return api.get(`/comments/${id}`)
+    .then(({data}) => dispatch(loadOfferComments(data)));
+};
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(`/login`)
