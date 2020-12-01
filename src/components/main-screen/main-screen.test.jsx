@@ -54,7 +54,7 @@ it(`Render MainScreen`, () => {
               rentItemsAmount={0}
               offerList={[offer]}
               city={``}
-              activeOfferId={``}
+              activeOfferId={0}
               authorizationStatus={``}
               onSignInClick={() => {}}
               onAuthUserClick={() => {}}

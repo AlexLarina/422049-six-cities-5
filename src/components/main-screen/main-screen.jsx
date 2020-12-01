@@ -75,7 +75,7 @@ MainScreen.propTypes = {
     photo: PropTypes.string.isRequired
   })).isRequired,
   city: PropTypes.string,
-  activeOfferId: PropTypes.string,
+  activeOfferId: PropTypes.number,
   cityCoordinates: PropTypes.arrayOf(PropTypes.number.isRequired, PropTypes.number.isRequired)
 };
 

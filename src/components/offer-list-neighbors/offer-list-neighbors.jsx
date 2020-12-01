@@ -6,7 +6,7 @@ import {setActiveOffer} from "../../store/action.js";
 import PlaceCardNeighbour from "../place-card-neighbour/place-card-neighbour.jsx";
 
 const OfferListNeighbors = (props) => {
-  const {offerNeighboorsList, onHover} = props;
+  const {offerNeighboorsList, handleActiveOffer} = props;
   return (
     <div
       className="near-places__list places__list"
@@ -16,7 +16,9 @@ const OfferListNeighbors = (props) => {
           key={`${i}-${offer.id}`}
           id={`${offer.id}`}
           offer={offer}
-          onHover={onHover}
+          onHover={() => {
+            handleActiveOffer(offer.id);
+          }}
         />
       ))}
     </div>

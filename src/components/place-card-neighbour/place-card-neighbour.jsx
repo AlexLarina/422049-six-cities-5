@@ -1,16 +1,10 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PlaceCardScreen from "../place-card/place-card.jsx";
 
-class PlaceCardNeighbour extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <PlaceCardScreen className="cities" {...this.props} />
-    );
-  }
-}
+const PlaceCardNeighbour = (props) => {
+  return (
+    <PlaceCardScreen className="cities" {...props} />
+  );
+};
 
 export default PlaceCardNeighbour;

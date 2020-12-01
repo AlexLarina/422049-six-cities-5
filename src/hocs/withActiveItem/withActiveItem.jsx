@@ -14,13 +14,9 @@ const withActiveItem = (Component) => {
     }
 
     _onHover(id) {
-      const {handleActiveOffer} = this.props;
-
       this.setState({
         activeId: id
       });
-
-      handleActiveOffer(this.state.activeId);
     }
 
     render() {

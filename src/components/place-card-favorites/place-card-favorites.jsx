@@ -1,16 +1,10 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PlaceCardScreen from "../place-card/place-card.jsx";
 
-class PlaceCardFavorites extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <PlaceCardScreen className="favorites" {...this.props} />
-    );
-  }
-}
+const PlaceCardFavorites = (props) => {
+  return (
+    <PlaceCardScreen className="favorites" {...props} />
+  );
+};
 
 export default PlaceCardFavorites;

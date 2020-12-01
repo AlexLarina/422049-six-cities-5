@@ -1,36 +1,30 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 import Review from "../review/review.jsx";
 
-class ReviewList extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const ReviewList = (props) => {
+  const {reviewList} = props;
 
-  render() {
-    const {reviewList} = this.props;
-
-    return (
-      <React.Fragment>
-        <h2 className="reviews__title">Reviews &middot;
-          <span className="reviews__amount">
-            {reviewList.length}
-          </span>
-        </h2>
-        <ul className="reviews__list">
-          {reviewList.map((review, i) => (
-            <Review
-              key={`${i}-${review.id}`}
-              review={review}
-            />
-          ))}
-        </ul>
-      </React.Fragment>
-    );
-  }
-}
+  return (
+    <React.Fragment>
+      <h2 className="reviews__title">Reviews &middot;
+        <span className="reviews__amount">
+          {reviewList.length}
+        </span>
+      </h2>
+      <ul className="reviews__list">
+        {reviewList.map((review, i) => (
+          <Review
+            key={`${i}-${review.id}`}
+            review={review}
+          />
+        ))}
+      </ul>
+    </React.Fragment>
+  );
+};
 
 ReviewList.propTypes = {
   reviewList: PropTypes.arrayOf(

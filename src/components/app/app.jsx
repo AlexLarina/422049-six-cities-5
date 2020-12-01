@@ -87,7 +87,7 @@ App.propTypes = {
     premium: PropTypes.bool,
     photo: PropTypes.string.isRequired
   })).isRequired,
-  activeOfferId: PropTypes.string,
+  activeOfferId: PropTypes.number,
   userData: PropTypes.shape({
     email: PropTypes.string
   }),

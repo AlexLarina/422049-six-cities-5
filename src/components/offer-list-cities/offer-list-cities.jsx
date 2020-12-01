@@ -6,9 +6,7 @@ import {setActiveOffer} from "../../store/action.js";
 import PlaceCardCities from "../place-card-cities/place-card-cities.jsx";
 
 const OfferListCities = (props) => {
-  const {offerList, onHover} = props;
-  // console.log('from offer list city props');
-  // console.log(props);
+  const {offerList, handleActiveOffer} = props;
 
   return (
     <div
@@ -19,7 +17,9 @@ const OfferListCities = (props) => {
           key={`${i}-${offer.id}`}
           id={`${offer.id}`}
           offer={offer}
-          onHover={onHover}
+          onHover={() => {
+            handleActiveOffer(offer.id);
+          }}
         />
       ))}
     </div>

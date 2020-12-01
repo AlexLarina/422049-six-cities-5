@@ -35,7 +35,7 @@ const mockStore = configureStore()({
     offerList: []
   },
   PROCESS: {
-    activeOfferId: ``
+    activeOfferId: 0
   },
   USER: {
     userData: {}
@@ -51,7 +51,7 @@ it(`Render App`, () => {
           <MemoryRouter>
             <App
               offerList={[offer]}
-              activeOfferId={``}
+              activeOfferId={0}
               userData={userData}
               openOffer={() => {}}
               openFavorites={() => {}}
