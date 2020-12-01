@@ -78,7 +78,7 @@ exports[`Render MainScreen 1`] = `
           >
             <a
               className="locations__item-link tabs__item
-                "
+              "
               href="#"
             >
               <span
@@ -93,7 +93,7 @@ exports[`Render MainScreen 1`] = `
           >
             <a
               className="locations__item-link tabs__item
-                "
+              "
               href="#"
             >
               <span
@@ -108,7 +108,7 @@ exports[`Render MainScreen 1`] = `
           >
             <a
               className="locations__item-link tabs__item
-                "
+              "
               href="#"
             >
               <span
@@ -123,7 +123,7 @@ exports[`Render MainScreen 1`] = `
           >
             <a
               className="locations__item-link tabs__item
-                "
+              "
               href="#"
             >
               <span
@@ -138,7 +138,7 @@ exports[`Render MainScreen 1`] = `
           >
             <a
               className="locations__item-link tabs__item
-                "
+              "
               href="#"
             >
               <span
@@ -153,7 +153,7 @@ exports[`Render MainScreen 1`] = `
           >
             <a
               className="locations__item-link tabs__item
-                "
+              "
               href="#"
             >
               <span
@@ -185,7 +185,7 @@ exports[`Render MainScreen 1`] = `
           >
             0
              places to stay in 
-            
+            SAMARA
           </b>
           <form
             action="#"
@@ -360,7 +360,7 @@ exports[`Render MainScreen 1`] = `
             className="cities__map map"
           >
             <Map
-              activeOfferCoordinates={null}
+              activeOfferCoordinates={Array []}
               cityCoordinates={Array []}
               coordinates={
                 Array [

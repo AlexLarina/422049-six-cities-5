@@ -19,7 +19,6 @@ const OfferScreen = (props) => {
   const {offer, offerNeighboorsList, authorizationStatus} = props;
   const cityCoordinates = getLocationCoordinates(offer.city.location);
   const neighborCoordinates = offerNeighboorsList.map((offerItem) => offerItem.coordinates);
-  console.log(neighborCoordinates);
 
   return (
     <div className="page">
@@ -156,7 +155,6 @@ OfferScreen.propTypes = {
       location: PropTypes.shape({
         latitude: PropTypes.number.isRequired,
         longitude: PropTypes.number.isRequired,
-        zoom: PropTypes.number.isRequired
       })
     })
   }).isRequired,

@@ -359,12 +359,7 @@ exports[`Render App 1`] = `
             className="cities__map map"
           >
             <Map
-              activeOfferCoordinates={
-                Array [
-                  0,
-                  0,
-                ]
-              }
+              activeOfferCoordinates={Array []}
               coordinates={
                 Array [
                   Array [],

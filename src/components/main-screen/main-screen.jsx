@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {getLocationCoordinates} from "../../lib/adapter.js";
-
 import OfferListCities from "../offer-list-cities/offer-list-cities.jsx";
 import Map from "../map/map.jsx";
 import CityList from "../city-list/city-list.jsx";
@@ -25,10 +23,7 @@ const MainScreen = (props) => {
 
   const offerCoordinates = offerList.map((offer) => offer.coordinates);
   const activeOffer = offerList.find((offerItem) => offerItem.id === parseInt(activeOfferId, 10));
-  console.log(offerList);
-  console.log(activeOfferId);
-
-  const activeOfferCoordinates = (activeOffer) ? getLocationCoordinates(activeOffer.city.location) : null;
+  const activeOfferCoordinates = (activeOffer) ? activeOffer.coordinates : [0, 0];
 
   return (
     <div className="page page--gray page--main">
