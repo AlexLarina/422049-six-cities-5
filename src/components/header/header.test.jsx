@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {LoginScreen} from "./login-screen.jsx";
+import Header from "./header.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {MemoryRouter} from "react-router-dom";
@@ -12,15 +12,16 @@ const mockStore = configureStore()({
   }
 });
 
-it(`Render LoginScreen`, () => {
+it(`Render FavoritesScreen`, () => {
   const tree = renderer
     .create(
         <Provider store={mockStore}>
           <MemoryRouter>
-            <LoginScreen
-              onSubmit={() => {}}
-              authorizationStatus={``}
+            <Header
               userData={{}}
+              authorizationStatus={``}
+              onSignInClick={() => {}}
+              onAuthUserClick={() => {}}
             />
           </MemoryRouter>
         </Provider>

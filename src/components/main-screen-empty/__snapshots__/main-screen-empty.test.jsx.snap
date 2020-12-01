@@ -17,13 +17,14 @@ exports[`Render MainEmpty 1`] = `
           className="header__left"
         >
           <a
-            className="header__logo-link header__logo-link--active"
+            className="header__logo-link"
+            href="/"
           >
             <img
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="../img/logo.svg"
               width="81"
             />
           </a>
@@ -46,9 +47,8 @@ exports[`Render MainEmpty 1`] = `
                 />
                 <span
                   className="header__user-name user__name"
-                >
-                  Oliver.conner@gmail.com
-                </span>
+                  onClick={[Function]}
+                />
               </a>
             </li>
           </ul>

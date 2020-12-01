@@ -36,6 +36,10 @@ const mockStore = configureStore()({
   },
   PROCESS: {
     city: ``
+  },
+  USER: {
+    userData: {},
+    authorizationStatus: ``
   }
 });
 

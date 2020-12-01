@@ -11,6 +11,10 @@ const mockStore = configureStore()({
   },
   DATA: {
     cityList: []
+  },
+  USER: {
+    authorizationStatus: ``,
+    userData: {}
   }
 });
 
@@ -21,6 +25,8 @@ it(`Render MainEmpty`, () => {
           <MemoryRouter>
             <MainEmpty
               city={``}
+              authorizationStatus={``}
+              userData={{}}
             />
           </MemoryRouter>
         </Provider>

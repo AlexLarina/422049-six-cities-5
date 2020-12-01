@@ -18,7 +18,7 @@ exports[`Render OfferScreen 1`] = `
         >
           <a
             className="header__logo-link"
-            href="main.html"
+            href="/"
           >
             <img
               alt="6 cities logo"
@@ -47,9 +47,8 @@ exports[`Render OfferScreen 1`] = `
                 />
                 <span
                   className="header__user-name user__name"
-                >
-                  Oliver.conner@gmail.com
-                </span>
+                  onClick={[Function]}
+                />
               </a>
             </li>
           </ul>

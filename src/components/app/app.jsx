@@ -53,7 +53,10 @@ const App = (props) => {
             const offer = offerList.find((offerItem) => offerItem.id === parseInt(offerId, 10));
             openOffer(offerId);
             return (
-              <OfferScreen offer={offer} />
+              <OfferScreen
+                offer={offer}
+                userData={userData}
+              />
             );
           }}
         />
@@ -70,8 +73,6 @@ const mapStateToProps = ({PROCESS, DATA, USER}) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   openOffer(id) {
-    // @TO-DO загрузка активного оффера
-    // а за каким хуем она собственно нужна ?
     dispatch(fetchOfferComments(id));
     dispatch(fetchNearbyOffers(id));
   },
@@ -91,7 +92,8 @@ App.propTypes = {
     email: PropTypes.string
   }),
   openOffer: PropTypes.func.isRequired,
-  openFavorites: PropTypes.func.isRequired
+  openFavorites: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired
 };
 
 export {App};

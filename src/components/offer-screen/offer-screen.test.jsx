@@ -34,7 +34,8 @@ const mockStore = configureStore()({
     activeOfferId: ``
   },
   USER: {
-    authorizationStatus: ``
+    authorizationStatus: ``,
+    userData: {}
   }
 });
 
@@ -49,6 +50,7 @@ it(`Render OfferScreen`, () => {
               offer={offer}
               offerNeighboorsList={[]}
               authorizationStatus={``}
+              userData={{}}
             />
           </MemoryRouter>
         </Provider>
