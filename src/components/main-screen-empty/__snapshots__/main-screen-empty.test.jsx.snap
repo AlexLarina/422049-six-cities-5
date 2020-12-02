@@ -44,6 +44,11 @@ exports[`Render MainEmpty 1`] = `
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
+                  style={
+                    Object {
+                      "backgroundImage": "url(undefined)",
+                    }
+                  }
                 />
                 <span
                   className="header__user-name user__name"
