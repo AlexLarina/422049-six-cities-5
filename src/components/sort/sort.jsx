@@ -16,12 +16,10 @@ class Sort extends PureComponent {
 
   _handleClick(evt) {
     this._sortOptionsListRef.current.classList.toggle(`places__options--opened`);
-    // @TO-DO как бы мне накидывать на выбранный option класс active, чтобы миллион ссылок не городить
 
     if (evt.target.textContent !== this._currentSortOption) {
       this.props.handleSortClick(evt);
       this._currentSortOption = evt.target.textContent;
-      // @TO-DO как бы тут всобачить innerHtml, чтобы svg иконка не пропадала
       this._currentSortOptionRef.current.textContent = this._currentSortOption;
     }
   }
@@ -42,12 +40,6 @@ class Sort extends PureComponent {
           <li className="places__option" tabIndex="0">Price: high to low</li>
           <li className="places__option" tabIndex="0">Top rated first</li>
         </ul>
-        {/* <select className="places__sorting-type" id="places-sorting">
-          <option className="places__option" value="popular" defaultValue>Popular</option>
-          <option className="places__option" value="to-high">Price: low to high</option>
-          <option className="places__option" value="to-low">Price: high to low</option>
-          <option className="places__option" value="top-rated">Top rated first</option>
-        </select> */}
       </form>
     );
   }
