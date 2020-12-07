@@ -10,6 +10,7 @@ import {
 import {AuthorizationStatus} from "../lib/const.js";
 import {adaptOfferListToClient} from "../lib/adapter.js";
 
+// @TO-DO где надлежит адаптер применять ?
 export const fetchOfferList = () => (dispatch, _getState, api) => (
   api.get(`/hotels`)
     .then(({data}) => dispatch(loadOffers(adaptOfferListToClient(data))))
