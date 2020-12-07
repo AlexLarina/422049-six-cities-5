@@ -2,8 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import PlaceCardFavorites from "../place-card-favorites/place-card-favorites.jsx";
 
+import {getCityInfo, getUniqueFields} from "../../lib/util.js";
+
 const FavoritesList = (props) => {
   const {favoriteOfferList} = props;
+  console.log(getUniqueFields(getCityInfo(favoriteOfferList), `name`));
 
   return (
     <section className="favorites">
